@@ -1,0 +1,19 @@
+nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25em;
+}
+nav span:nth-child(1){
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+nav span:nth-child(2) a{
+    margin-right: 2em;
+    font-size: 1.3em;
+    text-decoration: none;
+    color: rgb(128, 128, 128);
+}
