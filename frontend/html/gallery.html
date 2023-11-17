@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas_timepass</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="../css/background.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/gallery.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body class="body3">
+    <div class="background_anim"></div>
+    <div class="background_anim"></div>
+    <div class="background_anim"></div>
+    <div class="background_anim"></div>
+    <!-- navbar -->
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <span>
+                <img src="../../logo.jpg" width="50" height="50" alt="">
+                <img src="../../logo.jpg" width="40" height="40" alt="">
+            </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <span>
+                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <span>
+                            <a class="nav-link" href="#">Achievement</a>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <span>
+                            <a class="nav-link" aria-disabled="true">Gallery</a>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <span>
+                            <a class="nav-link" aria-disabled="true">Contact</a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <div class="crousal">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../gallery/crousal1.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>FELICITATION AT USTAD ALLAUDDIN KHAN INTERNATIONAL MUSIC CONCERT</h5>
+                        <p>Recognition and honor received at a prestigious music concert.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="../gallery/crousal2.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>PERFORMANCE IN FRONT OF HONOURABLE AMIT SHAH JI</h5>
+                        <p>Live performance in the presence of the Home Minister of India.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="../../logo.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-md-block">
+                        <h5>Some representative placeholder content</h5>
+                        <p>This slide can be customized with additional information.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <hr>
+    <!-- gallery now starts -->
+    <div class="main_card row row-cols-1 row-cols-md-3 g-4">
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/maincard1.jpg" class="img-fluid rounded-start" alt="...">
+                <div class="card-body card__content_gallery">
+                    <h4 class="card-title">Received Special Guidance from Dr. Tanu Jain Madam, Ex. Civil Servant and
+                        Star Faculty of Tathastu IAS, O.R.N., Delhi.</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/maincard2.jpg" class="img-fluid rounded-start" alt="...">
+                <div class="card-body card__content_gallery">
+                    <h4 class="card-title">Addressing the yound and enthusiastic aspirants of UPSC CSE for the
+                        art of the effective strategy buildings.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Card 1 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card1.jpg" class="card-img-top" alt="Card 1">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Mr. L. S. Maluka Sir, Founder and Managing Director of Maluka IAS</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card2.jpg" class="card-img-top" alt="Card 2">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Taking Blessings of Dr. Vijay Verma Sir, Head of Political Science
+                        Department, DSC, Delhi University</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card3.jpg" class="card-img-top" alt="Card 3">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Special Session with Dr. Rita Swamy Choudhary Ji, Chairman, Sangeet Natak
+                        Academy, New Delhi</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card4.jpg" class="card-img-top" alt="Card 4">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Special Session with Mr. Raju Das Ji, Secretary, Sangeet Natak Academy, New
+                        Delhi, during Jyotirgamay Program</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card5.jpg" class="card-img-top" alt="Card 5">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Getting Awarded by Government of Madhya Pradesh at Kishor Kumar Auditorium,
+                        Khandwa, on Yog Diwas Program</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card6.jpg" class="card-img-top" alt="Card 6">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Taking Guidance from Respected Ahirwar Sir, Director (B.A.K.A.), Government
+                        of Madhya Pradesh after G20 Summit</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card7.jpg" class="card-img-top" alt="Card 7">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Got Appreciated by Respected Madam from United Kingdom (U.K.)</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card8.jpg" class="card-img-top" alt="Card 8">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Taking Guidance from Mr. Aditya Sir Immediately After His UPSC CSE Interview
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card9.jpg" class="card-img-top" alt="Card 9">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Awarded for the Impressive Overall Activity Holder</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 10 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card10.jpg" class="card-img-top" alt="Card 10">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Visited Drishti IAS HQ at Karol Bagh, New Delhi</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 11 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card13.jpg" class="card-img-top" alt="Card 11">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Just Before the Judgment at D.S.C.E. Audition Round</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 12 -->
+        <div class="col container_gallery">
+            <div class="card h-100 card_gallery">
+                <img src="../gallery/card14.jpg" class="card-img-top" alt="Card 12">
+                <div class="card-body card__content_gallery">
+                    <h5 class="card-title">Getting Rewarded by Great Tabla Player Anuradha Pal</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 13 -->
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <p>&copy; Copyright 2023 | All Rights Reserved.</p>
+    </footer>
+
+</body>
+<script src="frontend/js/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+
+</html>
