@@ -1,0 +1,57 @@
+html{
+    overflow: hidden;
+}
+#contact{
+    background-color: transparent!important;
+    background-image: url(../material_images/contact.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+.container{
+    margin-top: 2em;
+}
+.text-center{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+}
+
+.text-center {
+    margin-top: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    font-weight: 800;
+    font-size: 2em;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1;
+	padding: 0.3em 2em;
+    border-radius: 1em;
+}
+.text-center a{
+    padding: 0.4em;
+    scale: 1.1;
+}
+.contact_taker{
+    width: 100%;
+}
+.submit_button{
+    background: rgba(0, 0, 0, 0.6);
+}
+.text-center:hover,
+.submit_button:hover{
+    background-color: rgba(82, 82, 82, 0.6);
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
