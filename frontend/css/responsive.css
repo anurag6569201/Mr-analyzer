@@ -88,3 +88,22 @@
         font-size: 9px;
     }
 }
+
+/* ---------------------------------------------- */
+/* achievment */
+/* ---------------------------------------------- */
+
+@media (max-width:460px) and (min-width:400px){
+    #carouselExampleCaptions,
+    .carousel-item,
+    #carouselExampleCaptions ,.carousel-inner,.carousel-inner,.carousel-item{
+        font-size: 10px;
+    }
+}
+@media (max-width:399px){
+    #carouselExampleCaptions,
+    .carousel-item,
+    #carouselExampleCaptions ,.carousel-inner,.carousel-inner,.carousel-item{
+        font-size: 8px;
+    }
+}

@@ -52,6 +52,11 @@ details ul li {
 	font-weight: 500;
 	font-size: 1.4em;
 }
+details ul li:hover{
+	cursor: pointer;
+    text-shadow: 0 0 5px #b91fb9;
+    color: #fff;
+}
 
 p strong {
 	color: #36494e;
