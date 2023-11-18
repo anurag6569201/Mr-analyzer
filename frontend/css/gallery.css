@@ -1,4 +1,4 @@
-.body3,html{
+.body_gallery,html{
     overflow-x: hidden;
 }
 #carouselExampleCaptions ,.carousel-inner,.carousel-inner,.carousel-item{
@@ -31,7 +31,11 @@
     justify-content: center;
     margin: 3em;
 }
-
+.carousel-caption{
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 5em;
+  font-weight: 700;
+}
 /* gallery part */
 .container_gallery{
   max-width:1000px;
@@ -44,9 +48,10 @@
   width:350px;
   padding:1rem;
   cursor:pointer;
-  background-color:#36494e;
+  background-color:rgba(0,0,0,0.5);
 }
 .card_gallery img{
+  max-height: 310px;
   width:100%;
   border-radius:10px;
   position:relative;
