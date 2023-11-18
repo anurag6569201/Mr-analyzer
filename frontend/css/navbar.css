@@ -9,8 +9,12 @@ nav{
 }
 nav span:nth-child(1) img{
     border-radius: 50%;
-    border: 1px solid black;
-    margin-left: 0.3em;
+    box-shadow: 0 0 10px 1px black;
+    scale: 1.1;
+    margin-left: 0.5em;
+}
+nav span:nth-child(1) img:nth-child(2){
+    backdrop-filter: blur(5px);
 }
 .nav-link{
     margin-right: 3em;
@@ -22,6 +26,5 @@ nav span:nth-child(1) img{
 }
 .nav-link:hover{
 	text-shadow: 0 0 10px #fff;
-	border-bottom: 2px solid #fff;
 	box-shadow: 0 0 10px 3px #fff ease-in;
 }
