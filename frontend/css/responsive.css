@@ -72,19 +72,19 @@
     #carouselExampleCaptions,
     .carousel-item,
     #carouselExampleCaptions ,.carousel-inner,.carousel-inner,.carousel-item{
-        font-size: 12px;
+        font-size: 11px;
     }
     .carousel-caption h5{
-        font-size: 12px;
+        font-size: 11px;
     }
 }
 @media (max-width:399px){
     #carouselExampleCaptions,
     .carousel-item,
     #carouselExampleCaptions ,.carousel-inner,.carousel-inner,.carousel-item{
-        font-size: 10px;
+        font-size: 9px;
     }
-    .carousel-caption h5{
-        font-size: 10px;
+    .carousel-caption span{
+        font-size: 9px;
     }
 }
