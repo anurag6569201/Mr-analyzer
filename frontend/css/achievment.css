@@ -144,15 +144,18 @@ html {
 .col-sm-6 {
     padding: 0 1em;
 }
-.wrapup .card{
+
+.wrapup .card {
     background: rgba(0, 0, 0, 0.3);
     transition: 0.6s;
 }
-.wrapup .card:hover{
+
+.wrapup .card:hover {
     scale: 1.04;
     box-shadow: 0 0 15px 6px rgba(0, 0, 0, 0.8);
 }
-.card-body li:hover{
+
+.card-body li:hover {
     cursor: pointer;
     text-shadow: 0 0 5px #b91fb9;
     color: #fff;

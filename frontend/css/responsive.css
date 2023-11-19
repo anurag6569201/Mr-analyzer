@@ -2,43 +2,52 @@
 /* index page responsive */
 /* ---------------------------------------------- */
 
-@media (max-width:419px){
-    .body_index{
+@media (max-width:419px) {
+    .body_index {
         font-size: 9px;
     }
-    .home{
+
+    .home {
         flex-direction: column;
     }
 }
-@media (max-width:768px) and (min-width: 641px){
-    .body_index{
+
+@media (max-width:768px) and (min-width: 641px) {
+    .body_index {
         font-size: 16px;
     }
-    .home{
+
+    .home {
         flex-direction: column;
     }
 }
-@media (max-width:640px) and (min-width: 500px){
-    .body_index{
+
+@media (max-width:640px) and (min-width: 500px) {
+    .body_index {
         font-size: 13px;
     }
-    .home{
+
+    .home {
         flex-direction: column;
     }
 }
-@media (max-width:499px) and (min-width: 420px){
-    .body_index{
+
+@media (max-width:499px) and (min-width: 420px) {
+    .body_index {
         font-size: 11px;
     }
-    .home{
+
+    .home {
         flex-direction: column;
     }
 }
-@media (max-width:1150px) and (min-width: 769px){
-    .home{
+
+@media (max-width:1150px) and (min-width: 769px) {
+    .home {
         flex-direction: column;
     }
-    .achiev_text{
+
+    .achiev_text {
         text-align: center;
     }
 }
@@ -47,19 +56,22 @@
 /* intro page responsive */
 /* ---------------------------------------------- */
 
-@media (max-width:460px){
-    .intro{
+@media (max-width:460px) {
+    .intro {
         display: block;
     }
-    .body_intro{
+
+    .body_intro {
         font-size: 12px;
     }
 }
-@media (max-width: 991px) and (min-width: 461px){
-    .intro{
+
+@media (max-width: 991px) and (min-width: 461px) {
+    .intro {
         display: block;
     }
-    .intro .intro_image{
+
+    .intro .intro_image {
         position: absolute;
     }
 }
@@ -68,23 +80,34 @@
 /* gallery html */
 /* ---------------------------------------------- */
 
-@media (max-width:460px) and (min-width:400px){
+@media (max-width:460px) and (min-width:400px) {
+
     #carouselExampleCaptions,
     .carousel-item,
-    #carouselExampleCaptions ,.carousel-inner,.carousel-inner,.carousel-item{
+    #carouselExampleCaptions,
+    .carousel-inner,
+    .carousel-inner,
+    .carousel-item {
         font-size: 11px;
     }
-    .carousel-caption h5{
+
+    .carousel-caption h5 {
         font-size: 11px;
     }
 }
-@media (max-width:399px){
+
+@media (max-width:399px) {
+
     #carouselExampleCaptions,
     .carousel-item,
-    #carouselExampleCaptions ,.carousel-inner,.carousel-inner,.carousel-item{
+    #carouselExampleCaptions,
+    .carousel-inner,
+    .carousel-inner,
+    .carousel-item {
         font-size: 9px;
     }
-    .carousel-caption span{
+
+    .carousel-caption span {
         font-size: 9px;
     }
 }
@@ -93,17 +116,26 @@
 /* achievment */
 /* ---------------------------------------------- */
 
-@media (max-width:460px) and (min-width:400px){
+@media (max-width:460px) and (min-width:400px) {
+
     #carouselExampleCaptions,
     .carousel-item,
-    #carouselExampleCaptions ,.carousel-inner,.carousel-inner,.carousel-item{
+    #carouselExampleCaptions,
+    .carousel-inner,
+    .carousel-inner,
+    .carousel-item {
         font-size: 10px;
     }
 }
-@media (max-width:399px){
+
+@media (max-width:399px) {
+
     #carouselExampleCaptions,
     .carousel-item,
-    #carouselExampleCaptions ,.carousel-inner,.carousel-inner,.carousel-item{
+    #carouselExampleCaptions,
+    .carousel-inner,
+    .carousel-inner,
+    .carousel-item {
         font-size: 8px;
     }
 }

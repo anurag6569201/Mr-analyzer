@@ -1,38 +1,45 @@
-.body_intro,html{
-    overflow-x: hidden;
-    width: 100%;
-    height: 100vh;
+.body_intro,
+html {
+	overflow-x: hidden;
+	width: 100%;
+	height: 100vh;
 }
-.intro{
+
+.intro {
 	display: flex;
 	justify-content: space-evenly;
 	padding: 0.8em;
 }
-.intro .intro_image{
+
+.intro .intro_image {
 	position: relative;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	z-index: -999;
 }
-.intro .intro_text{
+
+.intro .intro_text {
 	width: 100%;
 	padding: 4em 0;
 	display: flex;
 	overflow-y: auto;
 	flex-direction: column;
 }
-.intro_text h2{
+
+.intro_text h2 {
 	color: #36494E;
 	font-size: 3.5em;
 	margin: 0;
 	font-weight: 600;
 }
-.intro_text p{
+
+.intro_text p {
 	color: #57747c;
 	font-size: 1.4em;
 	margin-left: 1em;
 }
+
 summary {
 	font-size: 2.5em;
 	font-weight: 900;
@@ -41,6 +48,7 @@ summary {
 	outline: none;
 	padding: 0.3em;
 }
+
 details ul {
 	list-style-type: circle;
 	margin-left: 1em;
@@ -52,10 +60,11 @@ details ul li {
 	font-weight: 500;
 	font-size: 1.4em;
 }
-details ul li:hover{
+
+details ul li:hover {
 	cursor: pointer;
-    text-shadow: 0 0 5px #b91fb9;
-    color: #fff;
+	text-shadow: 0 0 5px #b91fb9;
+	color: #fff;
 }
 
 p strong {
@@ -65,22 +74,22 @@ p strong {
 p span {
 	color: #435a61;
 }
-details button{
-    margin-top: .5em;
-    color: rgb(255, 255, 255);
-    background: #435a61;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
+
+details button {
+	margin-top: .5em;
+	color: rgb(255, 255, 255);
+	background: #435a61;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
 	padding: 0.3em 2em;
-    border-radius: 1em;
+	border-radius: 1em;
 }
-details button:hover{
+
+details button:hover {
 	box-shadow: 0 0 0.5em 0.2em rgba(0, 0, 0, 0.5);
-	text-shadow: hsla(0, 45%, 5%, .3) 0 0 1px, hsla(360, 55%, 95%, .3) 0 -1px 2px,  hsla(0, 45%, 5%, .3) 0 -1px 2px, hsla(360, 55%, 95%, .3) 0 20px 15px;
+	text-shadow: hsla(0, 45%, 5%, .3) 0 0 1px, hsla(360, 55%, 95%, .3) 0 -1px 2px, hsla(0, 45%, 5%, .3) 0 -1px 2px, hsla(360, 55%, 95%, .3) 0 20px 15px;
 }
-
-

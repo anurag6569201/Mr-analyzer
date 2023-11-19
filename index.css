@@ -1,31 +1,37 @@
-.body_index,html{
-    padding: 0.6em;
-    overflow-x: hidden;
-    max-width: 100%;
-    max-height: 100%;
+.body_index,
+html {
+	padding: 0.6em;
+	overflow-x: hidden;
+	max-width: 100%;
+	max-height: 100%;
 }
-html{
+
+html {
 	background-repeat: no-repeat;
-    background-image: url(frontend/material_images/index.png);
-    background-size: contain;
-    background-position: center center;
+	background-image: url(frontend/material_images/index.png);
+	background-size: contain;
+	background-position: center center;
 }
-.home{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.home {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-.wrapper_anim{
-    width: 100%;
-    margin-bottom: 5em;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+
+.wrapper_anim {
+	width: 100%;
+	margin-bottom: 5em;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
-.content_home{
+
+.content_home {
 	background-color: transparent;
 	width: 100%;
 }
+
 /* •·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•·•· */
 
 /* animation text */
@@ -43,16 +49,17 @@ html{
 .reveal-text,
 .reveal-text::after {
 	-webkit-animation-delay: var(--animation-delay, 2s);
-	        animation-delay: var(--animation-delay, 2s);
+	animation-delay: var(--animation-delay, 2s);
 	-webkit-animation-iteration-count: var(--iterations, 1);
-	        animation-iteration-count: var(--iterations, 1);
+	animation-iteration-count: var(--iterations, 1);
 	-webkit-animation-duration: var(--duration, 800ms);
-	        animation-duration: var(--duration, 800ms);
+	animation-duration: var(--duration, 800ms);
 	-webkit-animation-fill-mode: both;
-	        animation-fill-mode: both;
+	animation-fill-mode: both;
 	-webkit-animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
-	        animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+	animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
 }
+
 .reveal-text1,
 .reveal-text2,
 .reveal-text {
@@ -61,80 +68,89 @@ html{
 	--animation-iterations: var(--iterations, 1);
 	position: relative;
 	font-size: 5.4em;
-    margin: 0;
+	margin: 0;
 	-webkit-animation-name: clip-text;
-	        animation-name: clip-text;
+	animation-name: clip-text;
 	color: #36494E;
 	white-space: nowrap;
 	cursor: default;
 	margin-top: 0.3em;
 }
-.reveal-text1{
-    color: #435a61;
-    --delay:1.5s;
+
+.reveal-text1 {
+	color: #435a61;
+	--delay: 1.5s;
 }
-.reveal-text2{
-    color: #57747c;
-    --delay:2.3s;
+
+.reveal-text2 {
+	color: #57747c;
+	--delay: 2.3s;
 }
+
 .reveal-text1::after,
 .reveal-text2::after,
 .reveal-text::after {
-		content: "";
-		position: absolute;
-		z-index: 999;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: #f2f98b;
-		transform: scaleX(0);
-		transform-origin: 0 50%;
-		pointer-events: none;
-		-webkit-animation-name: text-revealer;
-		        animation-name: text-revealer;
-	}
-.reveal-text1::after{
-    background-color: #f9cd8b;
+	content: "";
+	position: absolute;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #f2f98b;
+	transform: scaleX(0);
+	transform-origin: 0 50%;
+	pointer-events: none;
+	-webkit-animation-name: text-revealer;
+	animation-name: text-revealer;
+}
+
+.reveal-text1::after {
+	background-color: #f9cd8b;
 }
 
 @-webkit-keyframes clip-text {
 	from {
 		-webkit-clip-path: inset(0 100% 0 0);
-		        clip-path: inset(0 100% 0 0);
+		clip-path: inset(0 100% 0 0);
 	}
+
 	to {
 		-webkit-clip-path: inset(0 0 0 0);
-		        clip-path: inset(0 0 0 0);
+		clip-path: inset(0 0 0 0);
 	}
 }
+
 @keyframes clip-text {
 	from {
 		-webkit-clip-path: inset(0 100% 0 0);
-		        clip-path: inset(0 100% 0 0);
+		clip-path: inset(0 100% 0 0);
 	}
+
 	to {
 		-webkit-clip-path: inset(0 0 0 0);
-		        clip-path: inset(0 0 0 0);
+		clip-path: inset(0 0 0 0);
 	}
 }
 
 
 @-webkit-keyframes text-revealer {
-	
-	0%, 50% {
+
+	0%,
+	50% {
 		transform-origin: 0 50%;
 	}
-	
-	60%, 100% {
-		transform-origin: 100% 50%;		
+
+	60%,
+	100% {
+		transform-origin: 100% 50%;
 	}
 
-	
+
 	60% {
 		transform: scaleX(1);
 	}
-	
+
 	100% {
 		transform: scaleX(0);
 	}
@@ -142,41 +158,44 @@ html{
 
 
 @keyframes text-revealer {
-	
-	0%, 50% {
+
+	0%,
+	50% {
 		transform-origin: 0 50%;
 	}
-	
-	60%, 100% {
-		transform-origin: 100% 50%;		
+
+	60%,
+	100% {
+		transform-origin: 100% 50%;
 	}
 
-	
+
 	60% {
 		transform: scaleX(1);
 	}
-	
+
 	100% {
 		transform: scaleX(0);
 	}
 }
 
 /* button of home page */
-.wrapper_anim button{
-    margin: 1em;
-    color: rgb(255, 255, 255);
-    background: #000000;
-    border: none;
-    padding: 0.5em 1em;
-    font-size: 24px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    width: 12em;
-    border-radius: 1em;
+.wrapper_anim button {
+	margin: 1em;
+	color: rgb(255, 255, 255);
+	background: #000000;
+	border: none;
+	padding: 0.5em 1em;
+	font-size: 24px;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	width: 12em;
+	border-radius: 1em;
 }
-.wrapper_anim button:hover{
+
+.wrapper_anim button:hover {
 	box-shadow: 0 0 0.5em 0.2em rgba(0, 0, 0, 0.5);
 }
 
@@ -191,135 +210,146 @@ html{
 	color: #435a61;
 	transform: scale(0.8);
 	animation: scale 8s forwards cubic-bezier(0.5, 1, 0.89, 1);
-  }
-  .achiev_text span button{
-    color: rgb(255, 255, 255);
-    background: #000000;
-    border: none;
-    padding: 0.5em 1em;
-    cursor: pointer;
+}
+
+.achiev_text span button {
+	color: rgb(255, 255, 255);
+	background: #000000;
+	border: none;
+	padding: 0.5em 1em;
+	cursor: pointer;
 	font-size: .4em;
 	font-weight: 800;
-    z-index: 1;
-    border-radius: 1em;
-  }
-  .achiev_text span span{
+	z-index: 1;
+	border-radius: 1em;
+}
+
+.achiev_text span span {
 	color: #03eff7;
 	font-size: 1.2em;
-  }
-  @keyframes scale {
+}
+
+@keyframes scale {
 	100% {
-	  transform: scale(1);
+		transform: scale(1);
 	}
-  }
-  
-  span {
+}
+
+span {
 	display: inline-block;
 	opacity: 0;
 	filter: blur(4px);
-  }
-  
-  span:nth-child(1) {
+}
+
+span:nth-child(1) {
 	animation: fade-in 0.8s 0.3s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(2) {
+}
+
+span:nth-child(2) {
 	animation: fade-in 0.8s 0.6s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(3) {
+}
+
+span:nth-child(3) {
 	animation: fade-in 0.8s 0.9s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(4) {
+}
+
+span:nth-child(4) {
 	animation: fade-in 0.8s 1.2s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(5) {
+}
+
+span:nth-child(5) {
 	animation: fade-in 0.8s 1.5s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(6) {
+}
+
+span:nth-child(6) {
 	animation: fade-in 0.8s 2s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(7) {
+}
+
+span:nth-child(7) {
 	animation: fade-in 0.8s 2.3s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(8) {
+}
+
+span:nth-child(8) {
 	animation: fade-in 0.8s 2.6s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(9) {
+}
+
+span:nth-child(9) {
 	animation: fade-in 0.8s 2.9s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(10) {
+}
+
+span:nth-child(10) {
 	animation: fade-in 0.8s 3.4s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(11) {
+}
+
+span:nth-child(11) {
 	animation: fade-in 0.8s 3.7s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(12) {
+}
+
+span:nth-child(12) {
 	animation: fade-in 0.8s 4s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(13) {
+}
+
+span:nth-child(13) {
 	animation: fade-in 0.8s 4.3s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(14) {
+}
+
+span:nth-child(14) {
 	animation: fade-in 0.8s 4.8s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(15) {
+}
+
+span:nth-child(15) {
 	animation: fade-in 0.8s 5.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(16) {
+}
+
+span:nth-child(16) {
 	animation: fade-in 0.8s 5.4s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(17) {
+}
+
+span:nth-child(17) {
 	animation: fade-in 0.8s 5.7s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  span:nth-child(18) {
+}
+
+span:nth-child(18) {
 	animation: fade-in 0.8s 6.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  span:nth-child(19) {
+}
+
+span:nth-child(19) {
 	animation: fade-in 0.8s 6.4s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  span:nth-child(20) {
+}
+
+span:nth-child(20) {
 	animation: fade-in 0.8s 6.7s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  span:nth-child(21) {
+}
+
+span:nth-child(21) {
 	animation: fade-in 0.8s 7s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  span:nth-child(22) {
+}
+
+span:nth-child(22) {
 	animation: fade-in 0.8s 7.3s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  span:nth-child(23) {
+}
+
+span:nth-child(23) {
 	animation: fade-in 0.8s 7.4s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  span:nth-child(24) {
+}
+
+span:nth-child(24) {
 	animation: fade-in 0.8s 7.7s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  span:nth-child(25) {
+}
+
+span:nth-child(25) {
 	animation: fade-in 0.8s 8s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  span:nth-child(26) {
+}
+
+span:nth-child(26) {
 	animation: fade-in 0.8s 8.3s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  }
-  
-  
-  
-  @keyframes fade-in {
+}
+
+
+
+@keyframes fade-in {
 	100% {
-	  opacity: 1;
-	  filter: blur(0);
+		opacity: 1;
+		filter: blur(0);
 	}
-  }
+}

@@ -1,4 +1,4 @@
-footer{
+footer {
     background-color: black;
     display: flex;
     align-items: center;
@@ -6,7 +6,8 @@ footer{
     padding: 1em;
     margin-top: 3em;
 }
-footer p{
+
+footer p {
     color: white;
     font-size: 1.25rem;
     font-weight: 700;
