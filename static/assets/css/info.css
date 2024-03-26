@@ -1,0 +1,42 @@
+.info-data,
+.information-outlet .row span {
+    border: 1px solid rgba(128, 128, 128, 0.863);
+    border-bottom: 2px solid grey;
+    padding: 0 .7em;
+    border-radius: .3em;
+}
+
+.information-outlet .row span {
+    font-size: 1.4em;
+    font-weight: 500;
+    color: grey;
+}
+
+.information-outlet i {
+    margin-right: .5em;
+}
+
+.info-data {
+    margin-top: .5em;
+}
+
+.info-data {
+    display: none;
+}
+
+.info-btn{
+    cursor: pointer;
+}
+.info-btn.active-btn{
+    background-color: rgb(216, 216, 216);
+}
+.info-data.active {
+    display: block;
+}
+.information-outlet .step{
+    margin-bottom: .4em;
+    padding: .2em .7em;
+}
+.info-data .col-md-12{
+    padding: 0;
+}
