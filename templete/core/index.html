@@ -4,58 +4,67 @@
 {% block content %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 outlet">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 outlet">
 
-            <div class="outlet-text">
-                <br>
-                <h1>Your Data <br>Our <button type="submit" class="Analysis-btn">Analysis!</button></h1>
-                <h3>100% Automatically and Free</h3>
-            </div>
-
-        </div>
-
-        <div class="col-md-6 upload-outlet">
-            <div class="input-div">
-                <input class="input uploaddata" name="file" type="file" onchange="showCheckedSign(this)" required>
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round"
-                    stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"
-                    class="icon">
-                    <polyline points="16 16 12 12 8 16"></polyline>
-                    <line y2="21" x2="12" y1="12" x1="12"></line>
-                    <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
-                    <polyline points="16 16 12 12 8 16"></polyline>
-                </svg>
-                <script>
-                    function showCheckedSign(input) {
-                        if (input.files && input.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = function(e) {
-                                document.documentElement.style.setProperty('--upload-color', 'rgb(89, 194, 255)');
-                                var iconElement = document.querySelector('.upload-alert');
-                                var analysisElement = document.querySelector('.Analysis-btn');
-                                iconElement.style.color = "rgb(89, 194, 255)";
-                                analysisElement.style.color = "rgb(89, 194, 255)";
-                                analysisElement.textContent = "Submit";
-                            }
-                            reader.readAsDataURL(input.files[0]);
-                        }
-                    }
-                </script>
-            </div>
-            <div class="upload-alert">
-                <div>
-                    <i class="fa-brands fa-whatsapp"> --</i>
-                    <i class="fa-brands fa-instagram"> --</i>
-                    <i class="fa-solid fa-phone"></i>
+                <div class="outlet-text">
+                    <br>
+                    <h1>Your Data <br>Our <button type="submit" class="Analysis-btn">Analysis!</button></h1>
+                    <h3>100% Automatically and Free</h3>
                 </div>
-                <span>CSV, JSON, TXT</span>
-            </div>
-        </div>
 
-    </div>
+            </div>
+
+            <div class="col-md-6 upload-outlet">
+                <div class="input-div">
+                    <input class="input uploaddata" name="file" type="file" onchange="showCheckedSign(this)" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round"
+                        stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"
+                        class="icon">
+                        <polyline points="16 16 12 12 8 16"></polyline>
+                        <line y2="21" x2="12" y1="12" x1="12"></line>
+                        <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+                        <polyline points="16 16 12 12 8 16"></polyline>
+                    </svg>
+                    <script>
+                        function showCheckedSign(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function(e) {
+                                    document.documentElement.style.setProperty('--upload-color', 'rgb(89, 194, 255)');
+                                    var iconElement = document.querySelector('.upload-alert');
+                                    var analysisElement = document.querySelector('.Analysis-btn');
+                                    iconElement.style.color = "rgb(89, 194, 255)";
+                                    analysisElement.style.color = "rgb(89, 194, 255)";
+                                    analysisElement.textContent = "Submit";
+                                }
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="upload-alert">
+                    <div>
+                        <input style="margin-right: .1em;" type="radio" name="contact_method" id="whatsapp" value="whatsapp">
+                        <label style="cursor: pointer;" for="whatsapp"><i class="fab fa-whatsapp"></i></label>
+                    
+                        <input style="margin-right: .1em;" type="radio" name="contact_method" id="instagram" value="instagram">
+                        <label style="cursor: pointer;" for="instagram"><i class="fab fa-instagram"></i></label>
+                    
+                        <input style="margin-right: .1em;" type="radio" name="contact_method" id="phone" value="phone">
+                        <label style="cursor: pointer;" for="phone"><i class="fas fa-phone"></i></label>
+                    </div>
+                    <span>CSV, JSON, TXT</span>
+                </div>
+            </div>
+
+        </div>
+    </form>
     <br><br>
     <div class="row">
+
         <div class="col-md-12 information-outlet">
             <div class="row">
                 <div class="col-md-12 info-btns">
@@ -64,6 +73,7 @@
                     <span class="info-btn" data-info="phone-info"><i class="fas fa-phone"></i> Phone-Calls</span>
                 </div>
                 <hr style="margin-top: 1em;">
+
                 <div class="col-md-12 mx-1 info-data whatsapp-info active">
                     <div class="row" style="justify-content: center;align-items: center;">
                         <div class="col-md-6" style="display: flex; justify-content: center;align-items: center;">
@@ -209,8 +219,10 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
     </div>
 </div>
 
