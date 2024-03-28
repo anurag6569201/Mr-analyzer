@@ -3,6 +3,24 @@
 
 {% block content %}
 
-    <img width="20em" height="20em" src="../../temp/graph.png" alt="">
+    <div class="col-md-12" style="display: flex;align-items: center;justify-content: center;">
+        <img style="object-fit: contain;width: min-content;" src="../../static/assets/temp/graph.png" alt="">
+    </div>
 
 {% endblock content %}
+
+df = pd.read_csv('static/assets/temp/data.csv')
+            message_counts = df.groupby("Sender")["Message"].count().sort_values(ascending=False)
+            message_counts = message_counts.reset_index()
+            custom_palette = sns.color_palette("husl", len(message_counts))
+
+            # Plotting the barplot
+            plt.figure(figsize=(12, 12))
+            sns.barplot(x='Message', y='Sender', data=message_counts, palette=custom_palette, ci=None)
+            plt.xlabel('Message Counts')
+            plt.ylabel('Senders')
+            plt.legend(title='Message Counts', labels=message_counts['Message'].values)
+            plt.show()
+            plt.tight_layout()
+            plt.savefig('static/assets/temp/graph.png')
+            return redirect('core:analysis')

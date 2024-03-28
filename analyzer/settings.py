@@ -124,19 +124,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Define two folders for static files
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/'),
-    os.path.join(BASE_DIR, 'temp/'),
-]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = 'static/'
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

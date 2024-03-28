@@ -19,7 +19,7 @@ def index(request):
             form.save()
             contact_method = request.POST.get('contact_method')
             uploaded_file_path = form.instance.file.path
-            with open(uploaded_file_path, 'r', encoding='utf-8') as txt_file, open("temp/data.csv", 'w', newline='', encoding='utf-8') as csv_file:
+            with open(uploaded_file_path, 'r', encoding='utf-8') as txt_file, open("static/assets/temp/data.csv", 'w', newline='', encoding='utf-8') as csv_file:
                 csv_writer = csv.writer(csv_file)
                 csv_writer.writerow(['Timestamp', 'Sender', 'Message'])
 
@@ -48,17 +48,19 @@ def index(request):
                 if timestamp and sender and message:
                     csv_writer.writerow([timestamp, sender, message])
 
-            df = pd.read_csv('temp/data.csv')
-            sender_counts = df.groupby("Sender")["Message"].count().sort_values(ascending=False)
-            custom_palette = sns.color_palette("husl", len(sender_counts))
+            df = pd.read_csv('static/assets/temp/data.csv')
+            message_counts = df.groupby("Sender")["Message"].count().sort_values(ascending=False)
+            message_counts = message_counts.reset_index()
+            custom_palette = sns.color_palette("husl", len(message_counts))
 
             plt.figure(figsize=(12, 12))
-            sns.barplot(x=df.index, y='Sender', data=df, palette=custom_palette,errorbar=None)
-            plt.xlabel('Sender')
-            plt.ylabel('Message Count')
+            sns.barplot(x='Message', y='Sender', data=message_counts, palette=custom_palette,errorbar=None)
+            plt.xlabel('Message Counts')
+            plt.ylabel('Senders')
             plt.title('Message Count by Sender')
+            plt.legend(title='Message Counts', labels=message_counts['Message'].values)
             plt.tight_layout()
-            plt.savefig('temp/graph.png')
+            plt.savefig('static/assets/temp/graph.png')
             return redirect('core:analysis')
     else:
         form = FileUploadForm()
