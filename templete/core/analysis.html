@@ -9,20 +9,41 @@
             <h1>Your {{contactMod.choosenoption}} <br>chats Analysis!!</h1>
             <h3>Most Active Member :- {{ top_user }}</h3>
         </div>
-        <div class="col-md-12 d-flex justify-content-center align-items-center">
-            <a href="../../static/assets/temp/graph.png"><img src="../../static/assets/temp/graph.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
-        </div>
-        <div class="outlet-text">
-            <h5>The graph illustrates the message distribution among users, with each bar representing an individual's message count.</h5>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="col-md-12 d-flex justify-content-center align-items-center">
-                    <a href="../../static/assets/temp/time.png"><img src="../../static/assets/temp/graph.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
+        
+        <div class="graphs-playground" style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+            <div class="row" style="justify-content: center;">
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <a href="../../static/assets/temp/graph.png"><img src="../../static/assets/temp/graph.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <a href="../../static/assets/temp/time.png"><img src="../../static/assets/temp/time.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
                 </div>
             </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4"></div>
+            <div class="row" style="justify-content: center;">
+                
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <a href="../../static/assets/temp/emoji.png"><img src="../../static/assets/temp/emoji.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <h5>Emoji Used Insights</h5>
+                    </div>
+                    <div class="row" style="justify-content: center;">
+                    {% for emoji, count in emoji_data %}
+                        <li style="list-style: none;" class="col-md-2 col-2">{{ emoji }} {{ count }}</li>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="justify-content: center;">
+                
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <a href="../../static/assets/temp/active.png"><img src="../../static/assets/temp/active.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <a href="../../static/assets/temp/usertime.png"><img src="../../static/assets/temp/usertime.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
