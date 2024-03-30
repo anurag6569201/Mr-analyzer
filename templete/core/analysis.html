@@ -4,54 +4,114 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="outlet-text">
-            <br>
-            <h1>Your {{contactMod.choosenoption}} <br>chats Analysis!!</h1>
-            <h3>Most Active Member :- {{ top_user }}</h3>
-        </div>
-        
-        <div class="graphs-playground" style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
-            <div class="row" style="justify-content: center;">
-                <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <a href="../../static/assets/temp/graph.png"><img src="../../static/assets/temp/graph.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
-                </div>
-                <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <a href="../../static/assets/temp/time.png"><img src="../../static/assets/temp/time.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
-                </div>
-            </div>
-            <div class="row" style="justify-content: center;">
-                
-                <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <a href="../../static/assets/temp/emoji.png"><img src="../../static/assets/temp/emoji.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        <h5>Emoji Used Insights</h5>
+        <div class="col-12">
+            <div class="card mt-4" style="background-color: transparent;border: none;">
+                <div class="card-body" >
+                    <h1 class="card-title text-center">Your {{ contactMod.choosenoption }} Chats Analysis</h1>
+                    <h3 class="card-subtitle mb-4 text-center">Most Active Member: {{ top_user }}</h3>
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <a href="../../static/assets/temp/graph.png">
+                                    <img src="../../static/assets/temp/graph.png" class="card-img-top" alt="Graph">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Activity Trends</h5>
+                                    <p class="card-text">This graph displays the activity trends over time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <a href="../../static/assets/temp/time.png">
+                                    <img src="../../static/assets/temp/time.png" class="card-img-top" alt="Time Graph">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Time Distribution</h5>
+                                    <p class="card-text">This graph shows the distribution of messages over time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add similar cards for other graphs -->
+                        
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <a href="../../static/assets/temp/emoji.png">
+                                    <img src="../../static/assets/temp/emoji.png" class="card-img-top" alt="Emoji Graph">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Emoji Usage</h5>
+                                    <p class="card-text">This graph illustrates the frequency of emoji usage in chats.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <a href="../../static/assets/temp/active.png">
+                                    <img src="../../static/assets/temp/active.png" class="card-img-top" alt="Active Hours Graph">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Active Hours</h5>
+                                    <p class="card-text">This graph depicts the most active hours of chat participants.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <a href="../../static/assets/temp/usertime.png">
+                                    <img src="../../static/assets/temp/usertime.png" class="card-img-top" alt="User Activity Graph">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">User Activity</h5>
+                                    <p class="card-text">This graph shows the activity levels of different chat participants.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <a href="../../static/assets/temp/heatmap.png">
+                                    <img src="../../static/assets/temp/heatmap.png" class="card-img-top" alt="Heatmap Graph">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Message Heatmap</h5>
+                                    <p class="card-text">This heatmap visualizes the density of messages over time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <a href="../../static/assets/temp/word.png">
+                                    <img src="../../static/assets/temp/word.png" class="card-img-top" alt="Word Cloud">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Word Cloud</h5>
+                                    <p class="card-text">This word cloud represents the most commonly used words in chats.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 mb-4">
+                            <div class="card"  style="background-color: transparent;border: none;border-top: 1px solid #d2d2d2;">
+                                <div class="card-body" style="margin-top: 0;">
+                                    <h5 class="card-title text-center">Emoji Counts</h5>
+                                    <ul class="list-unstyled d-flex flex-wrap align-items-start">
+                                        {% for emoji, count in emoji_data %}
+                                        <li class="mr-3 mb-2" style="margin-right: .4em;margin-bottom: .4em;">{{ emoji }}: {{ count }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row" style="justify-content: center;">
-                    {% for emoji, count in emoji_data %}
-                        <li style="list-style: none;" class="col-md-2 col-2">{{ emoji }} {{ count }}</li>
-                    {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="justify-content: center;">
-                
-                <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <a href="../../static/assets/temp/active.png"><img src="../../static/assets/temp/active.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
-                </div>
-                <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <a href="../../static/assets/temp/usertime.png"><img src="../../static/assets/temp/usertime.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
-                </div>
-                <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <a href="../../static/assets/temp/heatmap.png"><img src="../../static/assets/temp/heatmap.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
-                </div>
-                <div class="col-md-6 d-flex justify-content-center align-items-center">
-                    <a href="../../static/assets/temp/word.png"><img src="../../static/assets/temp/word.png" alt="" style="object-fit: contain; max-width: 100%;"></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock content %}
