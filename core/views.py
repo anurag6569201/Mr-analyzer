@@ -170,7 +170,48 @@ def index(request):
             plt.tight_layout()
             plt.savefig('static/assets/temp/usertime.png')
             
+            # heatmap
+            try:
+                df['Timestamp'] = pd.to_datetime(df['Timestamp'], errors='coerce')
+                df = df.dropna(subset=['Timestamp'])
+            except ValueError:
+                print("Timestamp format does not match expected format.")
+            df['Hour'] = df['Timestamp'].dt.hour
+            df['Day_of_Week'] = df['Timestamp'].dt.dayofweek
 
+            activity_by_day_hour = df.groupby(['Day_of_Week', 'Hour']).size().unstack(fill_value=0)
+            activity_by_day_hour = activity_by_day_hour.reindex(index=range(7))
+            plt.figure(figsize=(12,8))
+            sns.heatmap(activity_by_day_hour, cmap='rocket', square=False)
+            plt.title('Activity by Day of the Week and Hour')
+            plt.xlabel('Hour of the Day')
+            plt.ylabel('Day of the Week')
+            plt.yticks(ticks=range(7), labels=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], rotation=0)
+            plt.tight_layout()
+            plt.savefig('static/assets/temp/heatmap.png')
+
+            # wordcloud
+            comment_words = ' '
+            stopwords = STOPWORDS.update(['ok'])
+            
+            for val in df.Message.values: 
+                val = str(val) 
+                tokens = val.split() 
+                    
+                for i in range(len(tokens)): 
+                    tokens[i] = tokens[i].lower() 
+                    
+                for words in tokens: 
+                    comment_words = comment_words + words + ' '
+            
+            
+            wordcloud = WordCloud(width = 800, height = 800, 
+                            background_color ='black', 
+                            stopwords = stopwords, 
+                            min_font_size = 10).generate(comment_words) 
+            image = wordcloud.to_image()
+            image.save("static/assets/temp/word.png")
+            
             return redirect('core:analysis')
     else:
         form = FileUploadForm()
