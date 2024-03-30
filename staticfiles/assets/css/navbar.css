@@ -1,0 +1,40 @@
+/* #f8f9fa */
+body {
+    background-color: #f8f9fa;
+}
+
+.offcanvas,
+.offcanvas-body {
+    background-color: #f8f9fa;
+}
+
+.navbar-toggler:focus-visible {
+    outline: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-item {
+    margin-bottom: .7em;
+}
+
+.navbar-nav li {
+    border: 1px solid rgba(128, 128, 128, 0.863);
+    border-bottom: 2px solid grey;
+    padding: 0 .7em;
+    border-radius: .6em;
+}
+
+.navbar-nav li a {
+    font-size: 1.4em;
+    font-weight: 500;
+    color: grey;
+}
