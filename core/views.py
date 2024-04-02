@@ -36,22 +36,51 @@ def index(request):
 
             # reading the csv using pandas
             df = pd.read_csv('static/assets/temp/data.csv')
-
             timepng(df)
-            topmsgpng(df)
-            emojipng(df)
-            activepng(df)
-            useractivepng(df)
-            heatmappng(df)
-            wordpng(df)
 
-            return redirect('core:analysis')
+            return redirect('core:path1')
     else:
         form = FileUploadForm()
     return render(request, "core/index.html", {'form': form})
 
+def path1(request):
+    # reading the csv using pandas
+    df = pd.read_csv('static/assets/temp/data.csv')
+    emojipng(df)
+    return redirect('core:path2')
+            
+def path2(request):
+    # reading the csv using pandas
+    df = pd.read_csv('static/assets/temp/data.csv')
+    activepng(df)
+    return redirect('core:path3')
+
+def path3(request):
+    # reading the csv using pandas
+    df = pd.read_csv('static/assets/temp/data.csv')
+    useractivepng(df)
+    return redirect('core:path4')
+
+def path4(request):
+    # reading the csv using pandas
+    df = pd.read_csv('static/assets/temp/data.csv')
+    heatmappng(df)
+    return redirect('core:path5')
+
+def path5(request):
+    # reading the csv using pandas
+    df = pd.read_csv('static/assets/temp/data.csv')
+    wordpng(df)
+    return redirect('core:path6')
+
+def path6(request):
+    # reading the csv using pandas
+    df = pd.read_csv('static/assets/temp/data.csv')
+    topmsgpng(df)
+    return redirect('core:analysis')
+
 def analysis(request):
-    contactMod=UploadedFile.objects.get()
+    contactMod=UploadedFile.objects.first()
     df = pd.read_csv('static/assets/temp/data.csv')
     message_counts = df.groupby("Sender")["Message"].count().sort_values(ascending=False)
     message_counts = message_counts.reset_index()
