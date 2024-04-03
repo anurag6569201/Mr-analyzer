@@ -27,17 +27,17 @@ def index(request):
 
             # after choosing saving it to the data base
             form.save()
-
             # getting the path of the uploaded file for data analysis
             uploaded_file_path = form.instance.file.path 
 
-            # if the choosen option is whatsapp
-            initializing(uploaded_file_path)
-
-            # reading the csv using pandas
-            df = pd.read_csv('static/assets/temp/data.csv')
-            timepng(df)
-
+            if choosen_option=="whatsapp":
+                initializing(uploaded_file_path)
+                df = pd.read_csv('static/assets/temp/data.csv')
+                timepng(df)
+            elif choosen_option=="instagram":
+                Instainitializing(uploaded_file_path)
+                df = pd.read_csv('static/assets/temp/Idata.csv')
+                
             return redirect('core:path1')
     else:
         form = FileUploadForm()
@@ -120,6 +120,8 @@ def analysis(request):
 # Whatsapp functions for genrating images
 # ---------------------------------------#
 
+def Instainitializing(uploaded_file_path):
+    pass
 # function for initializing for csv data from txt data of whatsapp
 def initializing(uploaded_file_path):
     with open(uploaded_file_path, 'r', encoding='utf-8') as txt_file, open("static/assets/temp/data.csv", 'w', newline='', encoding='utf-8') as csv_file:
