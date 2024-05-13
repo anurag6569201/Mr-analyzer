@@ -77,3 +77,8 @@ footer .wrapper {
         margin: 0;
     }
 }
+@media (max-width:560px) {
+    .info-btns{
+        font-size: 10px;
+    }
+}

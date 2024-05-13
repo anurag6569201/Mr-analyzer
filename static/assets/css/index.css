@@ -1,7 +1,10 @@
 :root{
     --upload-color:rgb(69, 69, 69);
 }
-
+.disabledthings{
+    pointer-events: none;
+    opacity: .6;
+}
 .outlet {
     display: flex;
     align-items: left;

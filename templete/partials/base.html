@@ -23,6 +23,45 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
 
+    <style>
+      .loader-container{
+        display: none;
+      }
+      .loader-wrapper{
+        width: 100%;
+        height: 100vh;
+        z-index: 1000;
+        backdrop-filter: blur(2px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .loader {
+        border: 16px solid #242424;
+        border-top: 16px solid #3498db;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        animation: spin 2s linear infinite;
+        margin: auto;
+      }
+    
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+    
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
   <link rel="stylesheet" href="{% static 'assets/css/navbar.css' %}">
   <link rel="stylesheet" href="{% static 'assets/css/index.css' %}">
   <link rel="stylesheet" href="{% static 'assets/css/info.css' %}">
@@ -30,6 +69,11 @@
 </head>
 
 <body style="background-image: url(../../static/assets/images/whatsappBack.png);">
+  <div class="loader-container" id="loader-container">
+    <div class="loader-wrapper">
+      <div class="loader" id="loader"></div>
+    </div>
+  </div>
   <nav class="navbar" style="background: transparent;">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="../../static/assets/images/logolight.png" width="180px" alt=""></a>
@@ -99,5 +143,9 @@
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="{% static 'assets/js/index.js' %}"></script>
-
+<script>
+  document.querySelector(".Analysis-btn").addEventListener("click", function() {
+      document.getElementById("loader-container").style.display = "block"; // Show the loader
+  });
+</script>
 </html>

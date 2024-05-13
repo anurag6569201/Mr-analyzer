@@ -9,9 +9,9 @@
         <div class="row">
             <div class="col-md-6 outlet">
 
-                <div class="outlet-text">
+                <div class="outlet-text" id="outlet-text">
                     <br>
-                    <h1>Your Data <br>Our <button type="submit" class="Analysis-btn">Analysis!</button></h1>
+                    <h1>Your Data <br>Our <button type="submit" class="Analysis-btn" id="Analysis-btn">Analysis!</button></h1>
                     <h3>100% Automatically and Free</h3>
                 </div>
 
@@ -50,16 +50,15 @@
                         <input style="margin-right: .1em;" type="radio" name="contact_method" id="whatsapp" value="whatsapp" checked>
                         <label style="cursor: pointer;" for="whatsapp"><i class="fab fa-whatsapp"></i></label>
                                     
-                        <input style="margin-right: .1em;" type="radio" name="contact_method" id="instagram" value="instagram">
-                        <label style="cursor: pointer;" for="instagram"><i class="fab fa-instagram"></i></label>
+                        <input class="disabledthings" style="margin-right: .1em;" type="radio" name="contact_method" id="instagram" value="instagram">
+                        <label class="disabledthings" style="cursor: pointer;" for="instagram"><i class="fab fa-instagram"></i></label>
                                     
-                        <input style="margin-right: .1em;" type="radio" name="contact_method" id="phone" value="phone">
-                        <label style="cursor: pointer;" for="phone"><i class="fas fa-phone"></i></label>
+                        <input class="disabledthings" style="margin-right: .1em;" type="radio" name="contact_method" id="phone" value="phone">
+                        <label class="disabledthings" style="cursor: pointer;" for="phone"><i class="fas fa-phone"></i></label>
                     </div>
                     <span>CSV, JSON, TXT</span>
                 </div>
             </div>
-
         </div>
     </form>
     <br><br>
@@ -69,8 +68,8 @@
             <div class="row">
                 <div class="col-md-12 info-btns">
                     <span class="info-btn active-btn" data-info="whatsapp-info"><i class="fab fa-whatsapp"></i> Whatsapp</span>
-                    <span class="info-btn" data-info="instagram-info"><i class="fab fa-instagram"></i> Instagram</span>
-                    <span class="info-btn" data-info="phone-info"><i class="fas fa-phone"></i> Phone-Calls</span>
+                    <span class="info-btn disabledthings" data-info="instagram-info"><i class="fab fa-instagram"></i> Instagram</span>
+                    <span class="info-btn disabledthings" data-info="phone-info"><i class="fas fa-phone"></i> Phone-Calls</span>
                 </div>
                 <hr style="margin-top: 1em;">
 
@@ -136,7 +135,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-12 mx-1 info-data instagram-info">
+                <div class="col-md-12 mx-1 info-data instagram-info disabledthings">
                     <div class="row" style="justify-content: center;align-items: center;">
                         <div class="col-md-6" style="display: flex; justify-content: center;align-items: center;">
                             <img src="../../static/assets/images/insta.png" alt="">
@@ -188,7 +187,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-12 mx-1 info-data phone-info">
+                <div class="col-md-12 mx-1 info-data phone-info disabledthings">
                     <div class="row" style="justify-content: center;align-items: center;">
                         <div class="col-md-6" style="display: flex; justify-content: center;align-items: center;">
                             <img src="../../static/assets/images/phone.png" alt="">
