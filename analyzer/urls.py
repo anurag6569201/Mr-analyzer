@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # apps urls
-    path('',include('core.urls')),
+    path('',include('whatsapp.urls')),
 ]
 
 if settings.DEBUG:

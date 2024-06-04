@@ -8,7 +8,7 @@
   <title>Mr-Analyzer</title>
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="../../static/assets/images/analyzer.png" type="image/png">
+  <link rel="shortcut icon" href="../../static/whatsapp/images/analyzer.png" type="image/png">
 
   <!-- font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -22,7 +22,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
-
+  
+    {% include 'whatsapp/partial/style.html' %}
     <style>
       .loader-container{
         display: none;
@@ -61,15 +62,9 @@
         }
       }
     </style>
-
-  <link rel="stylesheet" href="{% static 'assets/css/navbar.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/css/index.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/css/info.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/css/footer.css' %}">
 </head>
 
-<body style="background-image: url(../../static/assets/images/whatsappBack.png);">
-  {% include 'core/creator.html' %}
+<body style="background-image: url(../../static/whatsapp/images/whatsappBack.png);">
   <div class="loader-container" id="loader-container">
     <div class="loader-wrapper">
       <div class="loader" id="loader"></div>
@@ -77,14 +72,14 @@
   </div>
   <nav class="navbar" style="background: transparent;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="../../static/assets/images/logolight.png" width="180px" alt=""></a>
+      <a class="navbar-brand" href="#"><img src="../../static/whatsapp/images/logolight.png" width="180px" alt=""></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="../../static/assets/images/logolight.png"
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="../../static/whatsapp/images/logolight.png"
               width="180px" alt=""></h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
@@ -113,7 +108,7 @@
   <footer>
     <div class="container">
       <div class="wrapper">
-        <a href="#" class="footer-logo"> <img src="{% static './assets/images/logolight.png' %}" alt="SimpleBlog Logo"
+        <a href="#" class="footer-logo"> <img src="{% static './whatsapp/images/logolight.png' %}" alt="SimpleBlog Logo"
             width="150" class="logo-light"> </a>
         <p class="footer-text"> Learn about Web accessibility, Web performance, and Database management. </p>
       </div>
@@ -144,7 +139,8 @@
   integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="{% static 'assets/js/index.js' %}"></script>
+{% include 'whatsapp/partial/script.html' %}
+
 <script>
   document.querySelector(".Analysis-btn").addEventListener("click", function() {
       document.getElementById("loader-container").style.display = "block"; // Show the loader
