@@ -1,7 +1,69 @@
-{% extends 'core/partial/main-base.html' %}
+{% extends 'core/partial/base.html' %}
 {% load static %}
 
-{% block content %}
+{% block index %}
 
+<div class="container-fluid analyzer-types">
+    <h1>Data Analysis</h1>
+    <hr style="margin: 0;"><br>
 
-{% endblock content %}
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'whatsapp:whatsapp' %}" style="text-decoration: none;">
+                <div class="card mb-3" style="width: 100%;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img  src="{% static 'core/images/whatsapp.png' %}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Whatsapp chat analyzer</h5>
+                                <p class="card-text">Its a whatsapp chat analyzer using python libraries, just have to upload the
+                                    chat and get your analysis within the minute.</p>
+                                <p class="card-text" style="display: flexbox;flex-wrap: wrap;">
+                                    <div class="tech-used">Numpy</div>
+                                    <div class="tech-used">Pandas</div>
+                                    <div class="tech-used">Matplotlib</div>
+                                    <div class="tech-used">Seaborne</div>
+                                    <div class="tech-used">Wordcloud</div>
+                                    <div class="tech-used">Emoji</div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <br>
+
+    <h2>Machine Learning</h2>
+    <hr style="margin: 0;"><br>
+
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'whatsapp:whatsapp' %}" style="text-decoration: none;">
+                <div class="card mb-3" style="width: 100%;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img  src="{% static 'core/images/credit.png' %}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Credit Score Predictor</h5>
+                                <p class="card-text">Its a credit Score predictor using kaggle dataset of credit score with 1000 datapoints.</p>
+                                <p class="card-text" style="display: flexbox;flex-wrap: wrap;">
+                                    <div class="tech-used">Logistic regression</div>
+                                    <div class="tech-used">ML prediction</div>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <br>
+</div>
+
+{% endblock index %}

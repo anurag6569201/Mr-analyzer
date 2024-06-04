@@ -2,14 +2,13 @@
 {% load static %}
 
 {% block appstylecontent %}
-  {% include 'whatsapp/partial/style.html' %}
+  {% include 'core/partial/style.html' %}
 {% endblock appstylecontent %}
 
 {% block content %}
-  {% block whatsapp %}
-  {% endblock whatsapp %}
+  {% block index %}
+  {% endblock index %}
 {% endblock content %}
 
 {% block appscriptcontent %}
-  {% include 'whatsapp/partial/script.html' %}
 {% endblock appscriptcontent %}
