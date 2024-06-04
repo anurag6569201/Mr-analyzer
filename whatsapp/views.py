@@ -38,7 +38,7 @@ def whatsapp(request):
                 Instainitializing(uploaded_file_path)
                 df = pd.read_csv('whatsapp/static/whatsapp/temp/Idata.csv')
                 
-            return redirect('core:path1')
+            return redirect('whatsapp:path1')
     else:
         form = FileUploadForm()
     return render(request, "whatsapp/app/whatsapp.html", {'form': form})
@@ -47,37 +47,37 @@ def path1(request):
     # reading the csv using pandas
     df = pd.read_csv('whatsapp/static/whatsapp/temp/data.csv')
     emojipng(df)
-    return redirect('core:path2')
+    return redirect('whatsapp:path2')
             
 def path2(request):
     # reading the csv using pandas
     df = pd.read_csv('whatsapp/static/whatsapp/temp/data.csv')
     activepng(df)
-    return redirect('core:path3')
+    return redirect('whatsapp:path3')
 
 def path3(request):
     # reading the csv using pandas
     df = pd.read_csv('whatsapp/static/whatsapp/temp/data.csv')
     useractivepng(df)
-    return redirect('core:path4')
+    return redirect('whatsapp:path4')
 
 def path4(request):
     # reading the csv using pandas
     df = pd.read_csv('whatsapp/static/whatsapp/temp/data.csv')
     heatmappng(df)
-    return redirect('core:path5')
+    return redirect('whatsapp:path5')
 
 def path5(request):
     # reading the csv using pandas
     df = pd.read_csv('whatsapp/static/whatsapp/temp/data.csv')
     wordpng(df)
-    return redirect('core:path6')
+    return redirect('whatsapp:path6')
 
 def path6(request):
     # reading the csv using pandas
     df = pd.read_csv('whatsapp/static/whatsapp/temp/data.csv')
     topmsgpng(df)
-    return redirect('core:analysis')
+    return redirect('whatsapp:analysis')
 
 def analysis(request):
     contactMod=UploadedFile.objects.first()

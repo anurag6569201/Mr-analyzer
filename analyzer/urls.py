@@ -22,6 +22,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # main outer app
+    path('',include('core.urls')),
+
     # apps urls
     path('',include('whatsapp.urls')),
 ]

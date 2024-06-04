@@ -1,7 +1,7 @@
 from django.urls import path
 from whatsapp import views
 
-app_name="core"
+app_name="whatsapp"
 
 urlpatterns=[
     path("whatsapp/",views.whatsapp,name="whatsapp"),

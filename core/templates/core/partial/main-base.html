@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include 'core/partial/main-style.html' %}
+
+    {% block stylecontent %}
+    {% endblock stylecontent %}
+</head>
+
+<body style="background-image: url(../../static/whatsapp/images/whatsappBack.png);">
+    
+    {% include 'core/component/loader.html' %}
+    {% include 'core/component/navbar.html' %}
+
+    {% block content %}
+    {% endblock content %}
+
+    {% include 'core/component/footer.html' %}
+</body>
+    {% include 'core/partial/main-script.html' %}
+
+    {% block scriptcontent %}
+    {% endblock scriptcontent %}
+</html>
