@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     # installed app
     'core',
     'whatsapp',
-    'creditscore',
+    'rockmine',
 ]
 
 MIDDLEWARE = [

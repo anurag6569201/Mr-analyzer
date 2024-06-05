@@ -27,7 +27,7 @@ urlpatterns = [
 
     # apps urls
     path('whats/',include('whatsapp.urls')),
-    path('credit/',include('creditscore.urls')),
+    path('rock/',include('rockmine.urls')),
 ]
 
 if settings.DEBUG:
