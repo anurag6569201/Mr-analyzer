@@ -26,7 +26,8 @@ urlpatterns = [
     path('',include('core.urls')),
 
     # apps urls
-    path('',include('whatsapp.urls')),
+    path('whats/',include('whatsapp.urls')),
+    path('credit/',include('creditscore.urls')),
 ]
 
 if settings.DEBUG:

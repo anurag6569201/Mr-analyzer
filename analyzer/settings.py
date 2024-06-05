@@ -42,7 +42,8 @@ INSTALLED_APPS = [
 
     # installed app
     'core',
-    'whatsapp'
+    'whatsapp',
+    'creditscore',
 ]
 
 MIDDLEWARE = [
