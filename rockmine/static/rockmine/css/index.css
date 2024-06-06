@@ -1,0 +1,9 @@
+label{
+    color: #454545;
+    font-weight: 700;
+}
+.copy_btn{
+    border: 1px solid rgb(212, 212, 212);
+    background-color: transparent;
+    border-radius: 10px;
+}

@@ -3,6 +3,17 @@
 
 {% block index %}
 
-<form action="{% url '' %}"></form>
+<div class="container flex justify-center">
+    <form action="">
+        <label for="testcase">Input The Test Case from given TestCases</label><br>
+        <input class="testcase" type="text">
+        <button class="check_btn">Check</button>
+    </form>
+    <div class="testcases_array">
+        <ul>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quisquam debitis odio ea? Magnam consequun <button class="copy_btn">copy</button></li>
+        </ul>
+    </div>
+</div>
 
 {% endblock index %}
