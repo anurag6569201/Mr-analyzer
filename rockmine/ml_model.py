@@ -6,7 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
 # createing dataframe from data
-sonar_df=pd.read_csv('rockmine/ml_model/sonar_data.csv',header=None)
+sonar_df=pd.read_csv('rockmine/sonar_data.csv',header=None)
 
 # dividing dataframe into features and targets
 features=sonar_df.drop(columns=60,axis=1)
@@ -27,6 +27,8 @@ def predicting_model(values):
     prediction = model.predict(input_data_reshaped)
 
     if(prediction[0]=='R'):
-        print("Thats a Rock")
+        print("Its rock")
+        return 1
     else:
-        print("Thats a Mine")
+        print("Its mine")
+        return 0

@@ -1,3 +1,4 @@
 from django.db import models
 
-# Create your models here.
+class DataUploadModel(models.Model):
+    data = models.TextField()

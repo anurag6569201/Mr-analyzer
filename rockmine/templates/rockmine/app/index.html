@@ -2,18 +2,33 @@
 {% load static %}
 
 {% block index %}
-
+<style>
+    label{
+        display: none;
+    }
+    .lebelfor_info{
+        display: block;
+    }
+    #id_data{
+        width: 100%;
+        height: 100px;
+        background-color: transparent;
+        border: 2px solid rgb(207, 207, 207);
+    }
+</style>
 <div class="container flex justify-center">
-    <form action="">
-        <label for="testcase">Input The Test Case from given TestCases</label><br>
-        <input class="testcase" type="text">
-        <button class="check_btn">Check</button>
+    <form method="post">
+        <label class="lebelfor_info">Input The Test Case from given TestCases</label>
+        {% csrf_token %}
+        {{ datform.as_p }}
+        <button type="submit">Check</button>
     </form>
     <div class="testcases_array">
         <ul>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quisquam debitis odio ea? Magnam consequun <button class="copy_btn">copy</button></li>
+            <li>
+                <button class="copy_btn">copy</button>
+            </li>
         </ul>
     </div>
 </div>
-
 {% endblock index %}
