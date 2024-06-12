@@ -9,6 +9,7 @@ from rockmine.ml_model import training_accuracy_score
 def rockmine(request):
     testing_datapoints = testing_data()
     testing_results=testing_data_result()
+    zipped_data = zip(testing_results, testing_datapoints)
     if request.method == "POST":
         form = DataUploadForm(request.POST)
         if form.is_valid():
@@ -27,8 +28,7 @@ def rockmine(request):
         form = DataUploadForm()
     
     context = {
-        'testing_results':testing_results,
-        'testing_datapoints': testing_datapoints,
+        'zipped_data':zipped_data,
         'datform': form,
     }
     return render(request, 'rockmine/app/index.html', context)
