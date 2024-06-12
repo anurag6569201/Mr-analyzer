@@ -1,0 +1,82 @@
+{% extends 'rockmine/partial/base.html' %}
+{% load static %}
+
+{% block index %}
+
+<div class="container">
+    <div class="result1">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-5" style="overflow: hidden;">
+                        {% if result_model %}
+                        <h3 class="card-title" style="text-align: center;">Ohhh!!! It's a Rock</h3>
+                        {% else %}
+                        <h3 class="card-title" style="text-align: center;">Ohhh!!! It's a Mine</h3>
+                        {% endif %}
+
+                        {% if result_model %}
+                        <img class="img-fluid rounded-start" src="../../../static/rockmine/images/rock.gif" alt="">
+                        {% else %}
+                        <img class="img-fluid rounded-start" src="../../../static/rockmine/images/mine.gif" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-7">
+                        <p>Sonar is a fascinating technology that allows us to explore and map the underwater world.
+                            Let’s dive into it!</p>
+                        <li>Model-Used : <b>Logistic Regression</b></li>
+                        <li>Training Accuracy Score : <b>{{ training_score }}%</b></li>
+                        <li>Testing Accuracy Score : <b>{{ testing_score }}%</b></li>
+                        <br>
+                        <div style="display: flex;align-items: center;justify-content: left;gap: 10px;">
+                            <span><b>Model code</b></span>
+                        </div>
+<textarea id="codeSnippet">
+# importing dependies
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# createing dataframe from data
+sonar_df=pd.read_csv('rockmine/sonar_data.csv',header=None)
+
+# dividing dataframe into features and targets
+features=sonar_df.drop(columns=60,axis=1)
+targets=sonar_df[60]
+
+# train test split
+x_train,x_test,y_train,y_test=train_test_split(features,targets,stratify=targets,test_size=0.2,random_state=3)
+
+model=LogisticRegression()
+model.fit(x_train,y_train)
+
+def testing_data():
+    x_test_np=np.asarray(x_test)
+    return x_test_np.tolist()
+
+def predicting_model(values):
+    input_data = np.asarray(values)
+    input_data_as_np=np.asarray(input_data)
+
+    input_data_reshaped=input_data_as_np.reshape(1,-1)
+
+    prediction = model.predict(input_data_reshaped)
+
+    if(prediction[0]=='R'):
+        print("Its rock")
+        return 1
+    else:
+        print("Its mine")
+        return 0
+</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+{% endblock index %}

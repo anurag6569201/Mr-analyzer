@@ -1,0 +1,18 @@
+.result1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result1 img {
+    max-width: 500px;
+}
+.copy-btn{
+    border: 1px solid rgb(212, 212, 212);
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: 12px;
+}
+#codeSnippet{
+    max-height: 150px;
+}

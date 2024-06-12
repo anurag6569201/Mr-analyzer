@@ -18,6 +18,26 @@ x_train,x_test,y_train,y_test=train_test_split(features,targets,stratify=targets
 model=LogisticRegression()
 model.fit(x_train,y_train)
 
+def training_accuracy_score():
+    x_train_prediction=model.predict(x_train)
+    training_data_accuracy=accuracy_score(x_train_prediction,y_train)
+    training_data_accuracy=round(training_data_accuracy*100,2)
+    return training_data_accuracy
+
+def testing_accuracy_score():
+    x_test_prediction=model.predict(x_test)
+    testing_data_accuracy=accuracy_score(x_test_prediction,y_test)
+    testing_data_accuracy=round(testing_data_accuracy*100,2)
+    return testing_data_accuracy
+
+def testing_data_result():
+    y_test_np=np.asarray(y_test)
+    return y_test_np.tolist()
+
+def testing_data():
+    x_test_np=np.asarray(x_test)
+    return x_test_np.tolist()
+
 def predicting_model(values):
     input_data = np.asarray(values)
     input_data_as_np=np.asarray(input_data)
