@@ -1,49 +1,64 @@
-{% extends 'rockmine/partial/base.html' %}
+{% extends 'diabetes/partial/base.html' %}
 {% load static %}
 
 {% block index %}
 
 <div class="container flex justify-center">
-    <form method="post">
-        <label class="lebelfor_info">Input The Fields Asked</label>
-        {% csrf_token %}
-        {{ datform.as_p }}
-        <button class="check_btn" type="submit">Check</button>
-    </form>
-    <br>
-    <h1>Testing Data Points</h1>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Copy-Friendly Testing Data</h5>
-            {% for test_result, test_data in zipped_data %}
-                <div class="testing_data py-2">
-                    <pre id="testingData{{ forloop.counter }}">{{ test_result }} -> {{ test_data }}&hellip;</pre>
-                    <button class="copy-btn mx-3" data-datapoint="{{ test_data }}">Copy</button>
+    <div class="row" style="align-items: center;justify-content: center;">
+        <div class="col-md-5">
+            <img class="img-fluid" src="../../../static/diabetes/images/preg.png" alt="">
+        </div>
+        <div class="col-md-7">
+            <form method="post">
+                <label class="lebelfor_info">Input The Fields Asked</label>
+                <hr style="margin-top: 0;">
+                {% csrf_token %}
+                <div class="row">
+                    <p class="col-md-6">
+                        <label for="id_pregnancies">Pregnancies:</label>
+                        <input type="number" name="pregnancies" required id="id_pregnancies">
+                    </p>
+                    <p class="col-md-6">
+                        <label for="id_glucose">Glucose:</label>
+                        <input type="number" name="glucose" required id="id_glucose">
+                    </p>
                 </div>
-            {% endfor %}
+                <div class="row">
+                    <p class="col-md-6">
+                        <label for="id_blood_pressure">Blood pressure:</label>
+                        <input type="number" name="blood_pressure" required id="id_blood_pressure">
+                    </p>
+                    <p class="col-md-6">
+                        <label for="id_skin_thickness">Skinn Thickness:</label>
+                        <input type="number" name="skin_thickness" required id="id_skin_thickness">
+                    </p>
+                </div>
+                <div class="row">
+                    <p class="col-md-6">
+                        <label for="id_insulin">Insulin:</label>
+                        <input type="number" name="insulin" required id="id_insulin">
+                    </p>
+                    <p class="col-md-6">
+                        <label for="id_bmi">Bmi:</label>
+                        <input type="number" name="bmi" step="any" required id="id_bmi">
+                    </p>
+                </div>
+                <div class="row">
+                    <p class="col-md-6">
+                        <label for="id_dbf">Dbf:</label>
+                        <input type="number" name="dbf" step="any" required id="id_dbf">
+                    </p>
+                    <p class="col-md-6">
+                        <label for="id_age">Age:</label>
+                        <input type="number" name="age" required id="id_age">
+                    </p>
+                </div>
+                <button class="check_btn" type="submit">Check</button>
+            </form>
         </div>
     </div>
     <br>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const copyButtons = document.querySelectorAll('.copy-btn');
-            copyButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const datapoint = this.getAttribute('data-datapoint');
-                    // Remove braces from the datapoint
-                    const cleanedDatapoint = datapoint.replace(/[\[\]']+/g, '');
-                    
-                    const textarea = document.createElement('textarea');
-                    textarea.value = cleanedDatapoint;
-                    document.body.appendChild(textarea);
-                    textarea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textarea);
-                    alert('Copied: ' + cleanedDatapoint);
-                });
-            });
-        });
-    </script>
+    <br>
 </div>
 
 {% endblock index %}
