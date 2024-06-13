@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'core',
     'whatsapp',
     'rockmine',
+    'diabetes',
 ]
 
 MIDDLEWARE = [

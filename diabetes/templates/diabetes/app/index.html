@@ -1,0 +1,49 @@
+{% extends 'rockmine/partial/base.html' %}
+{% load static %}
+
+{% block index %}
+
+<div class="container flex justify-center">
+    <form method="post">
+        <label class="lebelfor_info">Input The Fields Asked</label>
+        {% csrf_token %}
+        {{ datform.as_p }}
+        <button class="check_btn" type="submit">Check</button>
+    </form>
+    <br>
+    <h1>Testing Data Points</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Copy-Friendly Testing Data</h5>
+            {% for test_result, test_data in zipped_data %}
+                <div class="testing_data py-2">
+                    <pre id="testingData{{ forloop.counter }}">{{ test_result }} -> {{ test_data }}&hellip;</pre>
+                    <button class="copy-btn mx-3" data-datapoint="{{ test_data }}">Copy</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const datapoint = this.getAttribute('data-datapoint');
+                    // Remove braces from the datapoint
+                    const cleanedDatapoint = datapoint.replace(/[\[\]']+/g, '');
+                    
+                    const textarea = document.createElement('textarea');
+                    textarea.value = cleanedDatapoint;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    alert('Copied: ' + cleanedDatapoint);
+                });
+            });
+        });
+    </script>
+</div>
+
+{% endblock index %}

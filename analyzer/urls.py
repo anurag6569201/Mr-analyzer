@@ -28,6 +28,7 @@ urlpatterns = [
     # apps urls
     path('whats/',include('whatsapp.urls')),
     path('rock/',include('rockmine.urls')),
+    path('diabetes/',include('diabetes.urls')),
 ]
 
 if settings.DEBUG:
