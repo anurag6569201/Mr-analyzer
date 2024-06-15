@@ -40,11 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # installed app
+    # core apps
     'core',
+
+    # data science apps
     'whatsapp',
+
+    # machine learning apps
     'rockmine',
     'diabetes',
+    'moviesystem',
 ]
 
 MIDDLEWARE = [
