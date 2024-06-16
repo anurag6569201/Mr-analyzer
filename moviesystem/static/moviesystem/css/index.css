@@ -1,0 +1,50 @@
+label{
+    display: block;
+    color: #454545;
+    font-weight: 600;
+}
+.copy-btn,
+.copy_btn,
+.check_btn{
+    background-color: transparent;
+    border: 1px solid #454545;
+    border-radius: 5px;
+    color: #454545;
+    font-weight: 600;
+}
+.copy-btn:hover,
+.copy_btn:hover,
+.check_btn:hover{
+    background-color: #454545;
+    border: 1px solid #454545;
+    color: #fafafa;
+}
+
+#id_glucose,
+#id_blood_pressure,
+#id_skin_thickness,
+#id_insulin,
+#id_bmi,
+#id_dbf,
+#id_age,
+#id_pregnancies {
+    font-family: "SF Pro";
+    width: 100%;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+    padding: 0 10px;
+}
+#id_glucose:focus,
+#id_blood_pressure:focus,
+#id_skin_thickness:focus,
+#id_insulin:focus,
+#id_bmi:focus,
+#id_dbf:focus,
+#id_age:focus,
+#id_pregnancies:focus {
+    box-shadow: 5.5px 7px 0 black;
+}

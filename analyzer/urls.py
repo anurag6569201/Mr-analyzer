@@ -26,9 +26,14 @@ urlpatterns = [
     path('',include('core.urls')),
 
     # apps urls
+
+    # datascience urls
     path('whats/',include('whatsapp.urls')),
+
+    # machine learning urls
     path('rock/',include('rockmine.urls')),
     path('diabetes/',include('diabetes.urls')),
+    path('moviesystem/',include('moviesystem.urls')),
 ]
 
 if settings.DEBUG:
