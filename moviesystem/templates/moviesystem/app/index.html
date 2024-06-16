@@ -2,72 +2,24 @@
 {% load static %}
 
 {% block index %}
-<!-- https://image.tmdb.org/t/p/w600_and_h900_bestv2/ -->
+
 <div class="container-fluid flex justify-center" style="overflow: hidden;">
     <div class="row" style="align-items: center;justify-content: center;">
         <div class="col-md-12 container-fluid crousel-container">
             <main>
                 <ul class='slider'>
+                    {% for top10 in top10movie %}
                     <li class='item'
-                        style="background-image: url('https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg')">
+                        style="background-image: url('https://image.tmdb.org/t/p/w600_and_h900_bestv2{{top10.image_path}}')">
                         <div class='content'>
-                            <h2 class='title'>"Lossless Youths"</h2>
-                            <p class='description'> Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-                                praesentium nisi. Id laboriosam ipsam enim. </p>
-                            <button>Read More</button>
+                            <h2 class='title'>"{{top10.title}}"</h2>
+                            <p class='description description-pc'>{{top10.overview|truncatechars:200}}</p>
+                            <p class='description description-mobile'>{{top10.overview|truncatechars:80}}</p>
+                            <button>{{top10.released_date}}</button>
+                            <button>{{top10.runtime}} min</button>
                         </div>
                     </li>
-                    <li class='item' style="background-image: url('https://i.redd.it/tc0aqpv92pn21.jpg')">
-                        <div class='content'>
-                            <h2 class='title'>"Estrange Bond"</h2>
-                            <p class='description'> Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-                                praesentium nisi. Id laboriosam ipsam enim. </p>
-                            <button>Read More</button>
-                        </div>
-                    </li>
-                    <li class='item'
-                        style="background-image: url('https://wharferj.files.wordpress.com/2015/11/bio_north.jpg')">
-                        <div class='content'>
-                            <h2 class='title'>"The Gate Keeper"</h2>
-                            <p class='description'> Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-                                praesentium nisi. Id laboriosam ipsam enim. </p>
-                            <button>Read More</button>
-                        </div>
-                    </li>
-                    <li class='item' style="background-image: url('https://images7.alphacoders.com/878/878663.jpg')">
-                        <div class='content'>
-                            <h2 class='title'>"Last Trace Of Us"</h2>
-                            <p class='description'>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure
-                                corporis inventore praesentium nisi. Id laboriosam ipsam enim.
-                            </p>
-                            <button>Read More</button>
-                        </div>
-                    </li>
-                    <li class='item'
-                        style="background-image: url('https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg')">
-                        <div class='content'>
-                            <h2 class='title'>"Urban Decay"</h2>
-                            <p class='description'>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure
-                                corporis inventore praesentium nisi. Id laboriosam ipsam enim.
-                            </p>
-                            <button>Read More</button>
-                        </div>
-                    </li>
-                    <li class='item'
-                        style="background-image: url('https://da.se/app/uploads/2015/09/simon-december1994.jpg')">
-                        <div class='content'>
-                            <h2 class='title'>"The Migration"</h2>
-                            <p class='description'> Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
-                                praesentium nisi. Id laboriosam ipsam enim. </p>
-                            <button>Read More</button>
-                        </div>
-                    </li>
+                    {% endfor %}
                 </ul>
                 <nav class='navcarousel'>
                     <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
@@ -75,6 +27,7 @@
                 </nav>
             </main>
         </div>
+        <div class="spacer" style="height: 100vh;width: 100%;z-index: 0;"></div>
     </div>
     <br>
     <br>

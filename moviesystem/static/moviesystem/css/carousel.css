@@ -6,12 +6,18 @@
 .logo-navbar{
   filter: drop-shadow(5px 5px 40px white);
 }
+.description-mobile{
+  display: none;
+}
+.description-pc{
+  display: block;
+}
+footer,
 .navbar{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
   z-index: 1000;
+}
+footer{
+  position: relative;
 }
 .crousel-container{
   height: 100vh;
@@ -20,6 +26,12 @@
   overflow: hidden;
   padding: 0;
   margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1;
 }
 main {
   position: relative;
@@ -57,6 +69,9 @@ main {
   &:nth-child(4) { left: calc(50% + 220px); }
   &:nth-child(5) { left: calc(50% + 440px); }
   &:nth-child(6) { left: calc(50% + 660px); opacity: 0; }
+  &:nth-child(7) { left: calc(50% + 660px); opacity: 0; }
+  &:nth-child(8) { left: calc(50% + 660px); opacity: 0; }
+  &:nth-child(9) { left: calc(50% + 660px); opacity: 0; }
 }
 
 .content {
@@ -138,6 +153,12 @@ main {
     & .description  { font-size: 0.7rem; }
     & button        { font-size: 0.7rem; }
   }
+  .description-mobile{
+    display: block;
+  }
+  .description-pc{
+    display: none;
+  }
   .item {
     width: 160px;
     height: 270px;
@@ -154,6 +175,12 @@ main {
     & .title        { font-size: 0.9rem; }
     & .description  { font-size: 0.65rem; }
     & button        { font-size: 0.7rem; }
+  }
+  .description-mobile{
+    display: block;
+  }
+  .description-pc{
+    display: none;
   }
   .item {
     width: 130px;

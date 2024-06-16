@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import top10alltime
 
-# Register your models here.
+admin.site.register(top10alltime)
