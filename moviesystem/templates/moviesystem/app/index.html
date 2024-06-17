@@ -16,21 +16,35 @@
                             <p class='description description-pc'>{{top10.overview|truncatechars:200}}</p>
                             <p class='description description-mobile'>{{top10.overview|truncatechars:80}}</p>
                             <button>{{top10.released_date}}</button>
-                            <button>{{top10.runtime}} min</button>
+                            <button class="runtime-btn">{{top10.runtime}} min</button>
                         </div>
                     </li>
                     {% endfor %}
                 </ul>
-                <nav class='navcarousel'>
-                    <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
-                    <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
-                </nav>
+                <form method="post">
+                    <nav class='navcarousel'>
+                        {% csrf_token %}
+                        <div class="input__container input__container--variant">
+                            <div class="shadow__input shadow__input--variant"></div>
+                            <div class="search__container">
+                                <input type="text" name="text" class="input__search input__search--variant" placeholder="Search Movie...">
+                                <button class="input__button__shadow input__button__shadow--variant" type="submit">
+                                <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" height="1.5em">
+                                    <path d="M4 9a5 5 0 1110 0A5 5 0 014 9zm5-7a7 7 0 104.2 12.6.999.999 0 00.093.107l3 3a1 1 0 001.414-1.414l-3-3a.999.999 0 00-.107-.093A7 7 0 009 2z" fill-rule="evenodd" fill="#FFF"></path>
+                                </svg>
+                                </button>
+                            </div>
+                            <div style="display: flex;align-items: center;justify-content: center;">
+                                <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
+                                <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+                            </div>
+                        </div>
+                    </nav>
+                </form>
             </main>
         </div>
         <div class="spacer" style="height: 100vh;width: 100%;z-index: 0;"></div>
     </div>
-    <br>
-    <br>
 </div>
 
 {% endblock index %}

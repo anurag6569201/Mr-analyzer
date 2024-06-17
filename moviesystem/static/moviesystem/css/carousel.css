@@ -75,10 +75,10 @@ main {
 }
 
 .content {
-  width: min(30vw,400px);
+  width: min(35vw,400px);
   position: absolute;
   top: 50%;
-  left: 3rem;
+  left: 2em;
   transform: translateY(-50%);
   font: 400 0.85rem helvetica,sans-serif;
   color: white;
@@ -126,7 +126,8 @@ main {
 
 .navcarousel {
   position: absolute;
-  bottom: 2rem;
+  bottom: 10px;
+  font-size: 12px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
@@ -153,9 +154,13 @@ main {
     & .description  { font-size: 0.7rem; }
     & button        { font-size: 0.7rem; }
   }
+  .navcarousel{
+  font-size: 10px;
+  }
   .description-mobile{
     display: block;
   }
+
   .description-pc{
     display: none;
   }
@@ -176,11 +181,26 @@ main {
     & .description  { font-size: 0.65rem; }
     & button        { font-size: 0.7rem; }
   }
+  .navcarousel{
+    font-size: 8px;
+  }
+  .navcarousel {
+    & .btn {
+      padding: 0.30em;
+    }
+  }
   .description-mobile{
     display: block;
   }
+  .runtime-btn,
   .description-pc{
     display: none;
+  }
+  & .description-mobile {
+    line-height: .9;
+    margin: 0;
+    padding: 0;
+    font-size: 0.8rem;
   }
   .item {
     width: 130px;

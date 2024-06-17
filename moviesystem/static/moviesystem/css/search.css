@@ -1,0 +1,55 @@
+.input__container--variant {
+    background: linear-gradient(to bottom, #F3FFF9, #F3FFF9);
+    border-radius: 30px;
+    width: 40em;
+    padding: 1em 1em;
+  }
+  .search__container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .shadow__input--variant {
+    filter: blur(25px);
+    border-radius: 30px;
+    background-color: #F3FFF9;
+    opacity: 0.5;
+  }
+  
+  .input__button__shadow--variant {
+    border-radius: 15px;
+    background-color: #07372C;
+    padding: 10px;
+    border: none;
+    width: 20%;
+  }
+  
+  .input__button__shadow--variant:hover {
+    background-color: #3C6659;
+  }
+  
+  .input__search--variant {
+    width: 80%;
+    align-items: center;
+    border-radius: 13em;
+    outline: none;
+    border: none;
+    padding: 0.8em;
+    font-size: 1.2em;
+    color: #002019;
+    background-color: transparent;
+  }
+  
+  .input__search--variant::placeholder {
+    color: #002019;
+    opacity: 0.7;
+  }
+  
+  .input__container--variant {
+    background: linear-gradient(to bottom, #F3FFF9, #F3FFF9);
+    border-radius: 1.5em;
+    min-width: 100%;
+    padding: 1em;
+    box-shadow: 0em 1em 3em #beecdc64;
+  }
+  

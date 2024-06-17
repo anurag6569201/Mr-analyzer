@@ -7,3 +7,5 @@ class top10alltime(models.Model):
     released_date=models.DateField()
     runtime=models.IntegerField(default=0)
     
+class DataUploadModel(models.Model):
+    text=models.CharField(max_length=100)
