@@ -1,123 +1,67 @@
 {% extends 'moviesystem/partial/base.html' %}
+{% load custom_filters %}
 {% load static %}
 
 {% block index %}
 
-<div class="container">
-    <div class="result1">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-5" style="overflow: hidden;">
-                        {% if result_model %}
-                        <h3 class="card-title" style="text-align: center;">Non-Diabetic "Relax"</h3>
-                        {% else %}
-                        <h3 class="card-title" style="text-align: center;">Ohhh!!! You are Diabetic</h3>
-                        {% endif %}
-
-                        {% if result_model %}
-                        <img class="img-fluid rounded-start" src="../../../static/diabetes/images/non-diabetic.gif" alt="">
-                        {% else %}
-                        <img class="img-fluid rounded-start" src="../../../static/diabetes/images/diabetic.gif" alt="">
-                        {% endif %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- searched movie -->
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4 poster_img" >
+                        <img
+                            src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{searched_movie.backdrop_path}}"
+                            class="img-fluid rounded-start" alt="...">
                     </div>
-                    <div class="col-md-7">
-                        <p>Diabetes mellitus is a metabolic disease that causes high blood sugar. It occurs when your body either doesn’t make enough insulin or can’t effectively use the insulin it makes.</p>
-                        <li>Model-Used : <b>SVM Classifier</b></li>
-                        <li>Training Accuracy Score : <b>{{ training_score }}%</b></li>
-                        <li>Testing Accuracy Score : <b>{{ testing_score }}%</b></li>
-                        <br>
-                        <div style="display: flex;align-items: center;justify-content: left;gap: 10px;">
-                            <span><b>Model code</b></span>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 style="margin-bottom: 0;" class="card-title title_movie">{{ searched_movie.title|capfirst }} ({{searched_movie.runtime}} Min)</h3>
+                            <p style="margin-top: 0;padding-top: 0;line-height: 1.1;">
+                                {% if searched_movie.adult %}
+                                    <span class="adult_movie">R</span>
+                                {% else %}
+                                    <span class="adult_movie">A</span>
+                                {% endif %}
+                                <span>{{searched_movie.release_date}} ({{ searched_movie.production_countries }}) </span><span class="genere_movie">/ {{ searched_movie.genres }}</span><br>
+                                
+                            </p>
+                            <p>
+                                <div class="user_score_box">
+                                    <span class="user_score">10 / {{searched_movie.vote_average}}</span> <span class="score_label">User-Score</span>
+                                </div>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-body-secondary">Released Date : {{searched_movie.release_date}}</small><br>
+                                <small class="text-body-secondary">Budget : {{ searched_movie.budget|humanize_revenue }}</small><br>
+                                <small class="text-body-secondary">Revenue : {{ searched_movie.revenue|humanize_revenue }}</small>
+                            </p>
+                            <p>
+                                <button class="movie_btn">IMDB ID : {{ searched_movie.imdb_id }}</button>
+                                <button class="movie_btn">{{ searched_movie.original_language }}</button>
+                                <button class="movie_btn"><a style="text-decoration: none;color: white;" href="{{ searched_movie.homepage }}">Homepage</a></button>
+                            </p>
+                            <span><cite style="color: grey;">Are you curious ? {{ searched_movie.tagline }}</cite></span>
+                            <div class="movie_overview"><h5>Overview</h5><span>{{ searched_movie.overview }}</span></div>
+                            <div class="row">
+                                <div class="col-md-12" style="line-height: .6px;margin-top: 5px;">
+                                    <span><h6>Production Company</h6></span>
+                                    <span>{{ searched_movie.production_companies }}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-12" style="line-height: .6px;margin-top: 5px;">
+                                    <span><h6>Production Country</h6></span>
+                                    <span>{{ searched_movie.production_countries }}</span>
+                                </div>
+                            </div>
                         </div>
-<textarea id="codeSnippet" style="height: 150px;">
-# importing dependies
-import numpy as np
-import pandas as pd
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn import svm
-from sklearn.metrics import accuracy_score
-
-# createing dataframe from data
-diabetes_data=pd.read_csv('diabetes/diabetes.csv')
-
-# seprating the features and targets
-features=diabetes_data.drop(columns='Outcome',axis=1)
-target=diabetes_data['Outcome']
-
-# standardizing the data
-scaler=StandardScaler()
-scaler.fit(features)
-standardized_data=scaler.transform(features)
-
-X=standardized_data
-Y=diabetes_data['Outcome']
-
-# train and test
-x_train,x_test,y_train,y_test=train_test_split(X,Y,test_size=0.2,stratify=Y,random_state=2)
-
-# Traning the classifier using the train data
-classifier=svm.SVC(kernel='linear')
-classifier.fit(x_train,y_train)
-
-# accuracy on training moodel
-def training_accuracy_score():
-    x_train_prediction=classifier.predict(x_train)
-    training_data_accuracy=accuracy_score(y_train,x_train_prediction)
-    training_data_accuracy=round(training_data_accuracy*100,2)
-    return training_data_accuracy
-
-# accuracy on testing moodel
-def testing_accuracy_score():
-    x_test_prediction=classifier.predict(x_test)
-    testing_data_accuracy=accuracy_score(y_test,x_test_prediction)
-    testing_data_accuracy=round(testing_data_accuracy*100,2)
-    return testing_data_accuracy
-
-def testing_data_result():
-    y_test_np=np.asarray(y_test)
-    return y_test_np.tolist()
-
-def testing_data():
-    x_test_np=np.asarray(x_test)
-    return x_test_np.tolist()
-
-def predicting_model(values):
-    print(values)
-    input_data=(values)
-
-    # change the input data to numpy array
-    input_data_as_numpy=np.asarray(input_data)
-
-    # reshaping the numpy data
-    input_data_reshaped=input_data_as_numpy.reshape(1,-1)
-
-    # standardizing the data
-    std_data=scaler.transform(input_data_reshaped)
-    print(std_data)
-
-    prediction=classifier.predict(std_data)
-    print(prediction)
-
-    if(prediction[0]==0):
-        print("Person is diabetics")
-        return 0
-    else:
-        print("Person is not diabetic")
-        return 1    
-</textarea>
-<br>
-                    <div style="display: flex;align-items: center;justify-content: left;gap: 10px;">
-                        <span><b>Dataset Used</b></span>
-                    </div>
-                    <a href="{% static 'diabetes/dataset/diabetes.csv' %}" download>Download diabetes.csv</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br>
 
 {% endblock index %}

@@ -1,30 +1,43 @@
-.result1 {
+.poster_img{
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
 }
-
-.result1 img {
-    max-width: 500px;
+.poster_img img{
+    width: 90%;
+    border-radius: 5px;
 }
-.copy-btn{
-    border: 1px solid rgb(212, 212, 212);
-    background-color: transparent;
-    border-radius: 10px;
-    font-size: 12px;
+.title_movie{
+    font-weight: 700;
+    color: grey;
 }
-.CodeMirror,
-#codeSnippet{
-    max-height: 150px;
+.user_score{
+    background-color: #07372C;
+    padding: 4px 10px;
+    color: white;
+    border-radius: 5px;
+    font-weight: 600;
 }
-
-.col-md-5 h3{
-    font-family: "SF Pro";
-    width: 100%;
-    border: 1.5px solid #000;
-    border-radius: 0.5rem;
-    box-shadow: 2.5px 3px 0 #000;
-    outline: none;
-    transition: ease 0.25s;
-    padding: 0 10px;
+.score_label{
+    font-weight: 600;
+    color: #07372c;
+    padding-left: 5px;
+}
+.user_score_box{
+    display: flex;
+    align-items: baseline;
+    justify-content: left;
+    flex-direction: column;
+}
+.movie_overview{
+    color: #07372C;
+}
+.movie_btn{
+    background-color: #07372c;
+    color: white;
+    font-weight: 600;
+    border: 1px solid #0b2922;
+    border-radius: 5px;
+    padding: 2px 5px;
 }

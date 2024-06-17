@@ -45,3 +45,30 @@ def recommended_movie_ids(text):
         index = movie[0]
         recommended_ids.append(movie_df.loc[index, 'movie_id'])
     return recommended_ids
+
+# -----------------------------------------------
+# getting movies outputs as thier dictionary form
+# -----------------------------------------------
+poster=movie_df['poster_path']
+title=movie_df['title']
+overview=movie_df['overview']
+date=movie_df['release_date']
+runtime=movie_df['runtime']
+
+def movies_details(list):
+    movie_ids = list
+    movies_datas = []
+
+    for movie_id in movie_ids:
+        try:
+            adjusted_id=movie_id-1
+            movie_data = movie_df.loc[adjusted_id]
+            movies_datas.append(movie_data)
+        except KeyError:
+            print(f"No movie found with adjusted_id {adjusted_id}")
+
+    movies_datas = [movie.to_dict() for movie in movies_datas]
+    # print(movies_datas[1]['title'])
+    return movies_datas
+
+# movies_details([853, 1269, 772, 3016, 1550, 118, 2554, 1883, 976, 2447])

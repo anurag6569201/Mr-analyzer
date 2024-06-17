@@ -150,3 +150,4 @@ JAZZMIN_SETTINGS = {
     'site_logo':'assets/images/logo.png',
     'copyright':"Mr-Analyzer.com",
 }
+
