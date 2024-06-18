@@ -60,3 +60,8 @@
     z-index: -1;
     overflow: hidden;
 }
+.adult_movie{
+    border: 1px solid grey;
+    padding: 3px;
+    font-weight: 600;
+}
