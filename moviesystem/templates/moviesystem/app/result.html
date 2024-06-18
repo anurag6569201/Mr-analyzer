@@ -68,7 +68,7 @@
     <!-- recommended movies -->
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for movie in movies_information %}
-        <div class="col-3 col-md-3">
+        <div class="col col-sm-6 col-md-4 col-lg-3">
             <a href="{% url 'moviesystem:moviesystem_result' %}?text={{ movie.title|urlencode }}" style="text-decoration: none;">
                 <div class="card h-100">
                     <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title }}">

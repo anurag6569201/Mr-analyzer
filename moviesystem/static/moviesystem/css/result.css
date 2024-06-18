@@ -1,6 +1,6 @@
 .poster_img{
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
     border-radius: 5px;
 }
@@ -64,4 +64,10 @@
     border: 1px solid grey;
     padding: 3px;
     font-weight: 600;
+}
+
+@media (max-width:600px){
+    .backimage{
+        background-size: 140%;
+    }
 }

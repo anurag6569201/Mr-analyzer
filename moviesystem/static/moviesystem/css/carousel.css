@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 .logo-navbar{
-  filter: drop-shadow(5px 5px 40px white);
+  filter: drop-shadow(1px 1px 1px white);
 }
 .description-mobile{
   display: none;
