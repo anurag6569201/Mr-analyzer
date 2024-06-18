@@ -23,9 +23,9 @@ A movie recommendation system leveraging a custom dataset created by merging mul
 - **Advanced Cosine Similarity & TF-IDF Vectorizer algorithms**
 
 ### Links
-- **Website**: [MR-Analyzer - Movie Recommendations](https://lnkd.in/g7rF6VNM)
-- **GitHub**: [MR-Analyzer Repository](https://lnkd.in/gzm4xUnh)
-- **LinkedIn Post**: [Read more on LinkedIn](https://lnkd.in/g7rF6VNM)
+- **Website**: [MR-Analyzer - Movie Recommendations](https://mr-analyzer.azurewebsites.net/moviesystem/)
+- **GitHub**: [MR-Analyzer Repository](https://github.com/anurag6569201/Mr-analyzer/tree/master/moviesystem)
+- **LinkedIn Post**: [Read more on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7195842325602816002/)
 
 ## Rockmine Prediction Project
 🔍 **Rockmine Prediction Project**
@@ -39,9 +39,9 @@ This project explores the depths of data with Sonar technology to understand und
 - **Testing Accuracy Score**: 76.19%
 
 ### Links
-- **Website**: [Rockmine Prediction Project](https://lnkd.in/gJ2BMRYr)
-- **GitHub**: [MR-Analyzer Repository](https://lnkd.in/gzm4xUnh)
-- **LinkedIn Post**: [Read more on LinkedIn](https://lnkd.in/gJ2BMRYr)
+- **Website**: [Rockmine Prediction Project](https://mr-analyzer.azurewebsites.net/rock/)
+- **GitHub**: [MR-Analyzer Repository](https://github.com/anurag6569201/Mr-analyzer/tree/master/rockmine)
+- **LinkedIn Post**: [Read more on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7208810276245159936/)
 
 ## Diabetes Prediction Project
 🌊 **Diabetes Prediction Project**
@@ -55,9 +55,9 @@ A machine learning project aimed at diagnosing and managing diabetes mellitus. U
 - **Testing Accuracy Score**: 77.27%
 
 ### Links
-- **Website**: [Diabetes Prediction Project](https://lnkd.in/gJ2BMRYr)
-- **GitHub**: [MR-Analyzer Repository](https://lnkd.in/gzm4xUnh)
-- **LinkedIn Post**: [Read more on LinkedIn](https://lnkd.in/gJ2BMRYr)
+- **Website**: [Diabetes Prediction Project](https://mr-analyzer.azurewebsites.net/diabetes/)
+- **GitHub**: [MR-Analyzer Repository](https://github.com/anurag6569201/Mr-analyzer/tree/master/diabetes)
+- **LinkedIn Post**: [Read more on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7208810276245159936/)
 
 ## WhatsApp Chat Analyzer
 Hello everyone, **Introducing MR-Analyzer: Analyze WhatsApp Chats! 📊💬**
@@ -70,9 +70,9 @@ An easy-to-use tool for analyzing WhatsApp conversations. This project harnesses
 - **User-friendly interface for chat data upload and analysis**
 
 ### Links
-- **Website**: [WhatsApp Chat Analyzer](https://lnkd.in/gcKaFGhG)
-- **GitHub**: [MR-Analyzer Repository](https://lnkd.in/gzm4xUnh)
-- **LinkedIn Post**: [Read more on LinkedIn](https://lnkd.in/gcKaFGhG)
+- **Website**: [WhatsApp Chat Analyzer](https://mr-analyzer.azurewebsites.net/whats/whatsapp/)
+- **GitHub**: [MR-Analyzer Repository](https://github.com/anurag6569201/Mr-analyzer/tree/master/whatsapp)
+- **LinkedIn Post**: [Read more on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7195842325602816002/)
 
 ## Getting Started
 To explore the projects, clone the repository and follow the instructions in each project's directory.
