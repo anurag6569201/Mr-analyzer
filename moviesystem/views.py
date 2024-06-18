@@ -6,6 +6,9 @@ from .models import top10alltime
 from .TMDB_model import recommended_movie_ids
 from .TMDB_model import movies_details
 
+from django.views.decorators.csrf import requires_csrf_token
+
+@requires_csrf_token
 def index(request):
     top10movie = top10alltime.objects.all()
 
