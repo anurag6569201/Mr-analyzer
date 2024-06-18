@@ -21,7 +21,7 @@
 }
 .score_label{
     font-weight: 600;
-    color: #07372c;
+    color: white;
     padding-left: 5px;
 }
 .user_score_box{
@@ -31,7 +31,7 @@
     flex-direction: column;
 }
 .movie_overview{
-    color: #07372C;
+    color: white;
 }
 .movie_btn{
     background-color: #07372c;
@@ -40,4 +40,23 @@
     border: 1px solid #0b2922;
     border-radius: 5px;
     padding: 2px 5px;
+}
+.movie_card_main{
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: 50vh 90vh;
+}
+.movie_card{
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.backimage{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55vw;
+    min-height: 100%;
+    z-index: -1;
+    overflow: hidden;
 }

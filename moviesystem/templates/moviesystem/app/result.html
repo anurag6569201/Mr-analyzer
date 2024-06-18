@@ -8,17 +8,18 @@
     <div class="row">
         <!-- searched movie -->
         <div class="col-md-12">
-            <div class="card mb-3">
+            <div class="card mb-3 movie_card" style="background:linear-gradient(90deg,black 15%, black 38%, rgba(255,255,255,0.8327906162464986) 96%);">
                 <div class="row g-0">
                     <div class="col-md-4 poster_img" >
                         <img
-                            src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{searched_movie.backdrop_path}}"
+                            src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{searched_movie.poster_path}}"
                             class="img-fluid rounded-start" alt="...">
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8" style="background: linear-gradient(90deg,black 15%, black 38%, transparent 90%);position: relative;">
                         <div class="card-body">
+                            <div class="backimage" style="background: url('https://image.tmdb.org/t/p/w600_and_h900_bestv2{{searched_movie.backdrop_path}}');background-repeat: no-repeat;background-position: right center;background-size: 80%;"></div>
                             <h3 style="margin-bottom: 0;" class="card-title title_movie">{{ searched_movie.title|capfirst }} ({{searched_movie.runtime}} Min)</h3>
-                            <p style="margin-top: 0;padding-top: 0;line-height: 1.1;">
+                            <p style="margin-top: 0;padding-top: 0;line-height: 1.1;color: rgb(216, 216, 216);;">
                                 {% if searched_movie.adult %}
                                     <span class="adult_movie">R</span>
                                 {% else %}
@@ -33,25 +34,26 @@
                                 </div>
                             </p>
                             <p class="card-text">
-                                <small class="text-body-secondary">Released Date : {{searched_movie.release_date}}</small><br>
-                                <small class="text-body-secondary">Budget : {{ searched_movie.budget|humanize_revenue }}</small><br>
-                                <small class="text-body-secondary">Revenue : {{ searched_movie.revenue|humanize_revenue }}</small>
+                                <small style="color: rgb(216, 216, 216);;">Released Date : {{searched_movie.release_date}}</small><br>
+                                <small style="color: rgb(216, 216, 216);;">Budget : {{ searched_movie.budget|humanize_revenue }}</small><br>
+                                <small style="color: rgb(216, 216, 216);;">Revenue : {{ searched_movie.revenue|humanize_revenue }}</small>
                             </p>
                             <p>
                                 <button class="movie_btn">IMDB ID : {{ searched_movie.imdb_id }}</button>
                                 <button class="movie_btn">{{ searched_movie.original_language }}</button>
-                                <button class="movie_btn"><a style="text-decoration: none;color: white;" href="{{ searched_movie.homepage }}">Homepage</a></button>
+                                <button class="movie_btn bg-secondary"><a style="text-decoration: none;color: white;" href="{{ searched_movie.homepage }}">Homepage</a></button>
                             </p>
                             <span><cite style="color: grey;">Are you curious ? {{ searched_movie.tagline }}</cite></span>
                             <div class="movie_overview"><h5>Overview</h5><span>{{ searched_movie.overview }}</span></div>
+                            <br>
                             <div class="row">
-                                <div class="col-md-12" style="line-height: .6px;margin-top: 5px;">
+                                <div class="col-md-12" style="line-height: 13px;margin-top: 5px;color: rgb(216, 216, 216);">
                                     <span><h6>Production Company</h6></span>
                                     <span>{{ searched_movie.production_companies }}</span>
                                 </div>
                             </div>
                             <div class="row" style="margin-top: 10px;">
-                                <div class="col-md-12" style="line-height: .6px;margin-top: 5px;">
+                                <div class="col-md-12" style="line-height: 13px;margin-top: 5px;color: rgb(216, 216, 216);;">
                                     <span><h6>Production Country</h6></span>
                                     <span>{{ searched_movie.production_countries }}</span>
                                 </div>
@@ -61,6 +63,22 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- recommended movies -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for movie in movies_information %}
+        <div class="col-3 col-md-3">
+            <a href="{% url 'moviesystem:moviesystem_result' %}?text={{ movie.title|urlencode }}" style="text-decoration: none;">
+                <div class="card h-100">
+                    <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ movie.title|capfirst }}</h5>
+                        <p class="card-text">{{ movie.overview|truncatechars:60 }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
     </div>
 </div>
 

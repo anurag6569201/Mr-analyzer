@@ -38,7 +38,7 @@ def recommended_movie_ids(text):
     else:
         exit()
     similarity_score = list(enumerate(similarity[movie_index]))
-    sorted_similar_movies = sorted(similarity_score, key=lambda x: x[1], reverse=True)[:10]
+    sorted_similar_movies = sorted(similarity_score, key=lambda x: x[1], reverse=True)[:13]
    
     recommended_ids = []
     for i, movie in enumerate(sorted_similar_movies, 1):
