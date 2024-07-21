@@ -34,6 +34,9 @@ urlpatterns = [
     path('rock/',include('rockmine.urls')),
     path('diabetes/',include('diabetes.urls')),
     path('moviesystem/',include('moviesystem.urls')),
+
+    # LLMs Model project urls
+    path('MCQgenerator/',include('MCQgenerator.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

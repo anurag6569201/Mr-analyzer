@@ -1,0 +1,15 @@
+{% extends 'core/partial/main-base.html' %}
+{% load static %}
+
+{% block appstylecontent %}
+  {% include 'MCQgenerator/partial/style.html' %}
+{% endblock appstylecontent %}
+
+{% block content %}
+  {% block index %}
+  {% endblock index %}
+{% endblock content %}
+
+{% block appscriptcontent %}
+  {% include 'MCQgenerator/partial/script.html' %}
+{% endblock appscriptcontent %}
