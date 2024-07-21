@@ -11,6 +11,7 @@
                 {{form.as_p}}
                 <button class="check_btn">Create</button>
             </form>
+            {% if quiz_para %}
             <div class="about_disease mt-4">
                 <hr style="padding: 0;margin: 0;">
                 {% if quiz_para %}
@@ -31,6 +32,11 @@
                 {% endfor %}
                 {% endfor %}
             </div>
+            {% else %}
+            <hr style="padding: 0;margin: 0;" class="mt-3"><br>
+            <p><span>In <b>Name</b> Put the name of the <b>disease</b></span><br><span>In <b>nos</b> Put the number of <b>question generation</b> you wanted</span><br><br>
+                The chatbot's internal model leverages GenAI LLM and LangChain, ensuring high-quality question generation. The model is structured using three distinct prompts and three chains, which are linked together using SequentialChain. This sophisticated setup allows for a seamless and dynamic generation process, providing accurate and varied MCQs tailored to the specified disease.</p>
+            {% endif %}
         </div>
     </div>
 </div>
