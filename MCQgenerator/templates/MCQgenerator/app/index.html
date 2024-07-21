@@ -6,7 +6,31 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            
+            <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="check_btn">Create</button>
+            </form>
+            <div class="about_disease mt-4">
+                <hr style="padding: 0;margin: 0;">
+                {% if quiz_para %}
+                <p>{{ quiz_para }}</p>
+                {% endif %}
+            </div>
+            <div class="mcq">
+                {% for key, value in quiz_df.items %}
+                <p class="question">Question {{ key }}: {{ value.mcq }}</p>
+                {% for option_key, option_value in value.options.items %}
+                <label class="mcq-answer{% if option_key == value.correct %} correct{% else %} incorrect{% endif %}">
+                    <input type="radio" name="question{{ key }}" id="answer{{ key }}-{{ option_key }}">
+                    <div class="highlight"></div>
+                    <div class="circle"></div>
+                    <p>{{ option_key }}: {{ option_value }}</p>
+                    <span class="feedback">{% if option_key == value.correct %}Correct{% else %}Incorrect{% endif %}</span>
+                </label>
+                {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
