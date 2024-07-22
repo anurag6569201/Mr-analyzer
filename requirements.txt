@@ -54,6 +54,7 @@ kiwisolver==1.4.5
 langchain==0.2.10
 langchain-core==0.2.22
 langchain-google-genai==1.0.7
+langchain-pinecone==0.1.2
 langchain-text-splitters==0.2.2
 langsmith==0.1.93
 MarkupSafe==2.1.5
@@ -73,6 +74,8 @@ pandocfilters==1.5.1
 parso==0.8.3
 pexpect==4.9.0
 pillow==10.2.0
+pinecone-client==4.1.2
+pinecone-plugin-interface==0.0.7
 platformdirs==4.2.0
 prompt-toolkit==3.0.43
 proto-plus==1.24.0
@@ -87,6 +90,7 @@ pydantic_core==2.20.1
 Pygments==2.17.2
 pyparsing==3.1.2
 python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
 python-slugify==8.0.4
 pytz==2024.1
 PyYAML==6.0.1
