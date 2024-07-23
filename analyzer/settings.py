@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
     # LLM apps
     'MCQgenerator',
+    'asktoaske',
 ]
 
 MIDDLEWARE = [

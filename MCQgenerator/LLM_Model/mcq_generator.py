@@ -13,7 +13,7 @@ load_dotenv()
 google_gemini_api=os.getenv("GOOGLE_API_KEY")
 
 # loading the llm model of genai through langchain
-llm_model=ChatGoogleGenerativeAI(model="gemini-pro",google_api_key=google_gemini_api)
+llm_model=ChatGoogleGenerativeAI(model="gemini-1.5-pro",google_api_key=google_gemini_api)
 
 # created prompt templates
 
