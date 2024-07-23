@@ -8,3 +8,5 @@ class PDFDocument(models.Model):
         return self.title
     
 
+class ChainData(models.Model):
+    data = models.JSONField()
