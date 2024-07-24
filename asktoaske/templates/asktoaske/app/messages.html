@@ -64,27 +64,26 @@
 
         // Display user's message
         chatDisplay.innerHTML += `
-                <div class="direct-chat-msg right">
-                    <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-right">You</span>
-                    </div>
-                    <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/analyzer.png' %}" alt="message user image">
-                    <div class="chat-display">
-                        <div class="direct-chat-text">${userInput}</div>
-                    </div>
+            <div class="direct-chat-msg right">
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-name pull-right">You</span>
                 </div>
-                <div id="typing-indicator">
+                <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/analyzer.png' %}" alt="message user image">
+                <div class="chat-display">
+                    <div class="direct-chat-text">${userInput}</div>
+                </div>
+            </div>
+            <div id="typing-indicator">
                 <div class="direct-chat-msg left">
                     <div class="direct-chat-info clearfix">
                         <span class="direct-chat-name pull-left">Assistant</span>
                     </div>
-                    <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}"
-                        alt="message user image">
+                    <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}" alt="message user image">
                     <div class="chat-display">
                         <div class="direct-chat-text-ai direct-chat-text">Thinking...</div>
                     </div>
                 </div>
-                </div>`;
+            </div>`;
 
         // Clear input field
         document.getElementById('user-input').value = '';
@@ -100,32 +99,51 @@
             },
             body: JSON.stringify({ message: userInput })
         })
-            .then(response => response.json())
-            .then(data => {
-                // Remove typing indicator
-                const typingIndicator = document.getElementById('typing-indicator');
-                if (typingIndicator) {
-                    typingIndicator.remove();
-                }
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Remove typing indicator
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
 
-                // Replace newlines with <br> for proper HTML rendering
-                let assistantReply = data.reply.replace(/\n/g, '<br>');
+            // Replace newlines with <br> for proper HTML rendering
+            let assistantReply = data.reply.replace(/\n/g, '<br>');
 
-                // Replace **text** with <b>text</b> for bold text rendering
-                assistantReply = assistantReply.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+            // Replace **text** with <b>text</b> for bold text rendering
+            assistantReply = assistantReply.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
 
-                // Display assistant's response
-                chatDisplay.innerHTML += `
-                    <div class="direct-chat-msg left">
-                        <div class="direct-chat-info clearfix">
-                            <span class="direct-chat-name pull-left">Assistant</span>
-                        </div>
-                        <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}" alt="message user image">
-                        <div class="chat-display">
-                            <div class="direct-chat-text">${assistantReply}</div>
-                        </div>
-                    </div>`;
-            })
+            // Display assistant's response
+            chatDisplay.innerHTML += `
+                <div class="direct-chat-msg left">
+                    <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Assistant</span>
+                    </div>
+                    <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}" alt="message user image">
+                    <div class="chat-display">
+                        <div class="direct-chat-text">${assistantReply}</div>
+                    </div>
+                </div>`;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Display error message to user
+            chatDisplay.innerHTML += `
+                <div class="direct-chat-msg left">
+                    <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Assistant</span>
+                    </div>
+                    <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}" alt="message user image">
+                    <div class="chat-display">
+                        <div class="direct-chat-text">Sorry, there was an error processing your request. Please try again later.</div>
+                    </div>
+                </div>`;
+        });
     }
 
     // CSRF token for Django
@@ -143,6 +161,7 @@
         }
         return cookieValue;
     }
+
     function toggleFullScreen() {
         const chatBox = document.getElementById('page-content');
         const fullscreenButton = document.getElementById('fullscreen-button');
@@ -159,6 +178,6 @@
             fullscreenButton.textContent = 'Full Screen';
         }
     }
-
 </script>
+
 {% endblock index %}
