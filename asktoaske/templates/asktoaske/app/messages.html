@@ -12,112 +12,137 @@
         z-index: 9999;
     }
 </style>
-    <div class="container">
-        <div class="page-content page-container" id="page-content" style="display: none;">
-            <div class="col-md-12">
-                <div class="box box-warning direct-chat direct-chat-warning" style="border-radius: .4em; margin: 0;">
-                    <div class="box-header with-border">
-                        <h1 class="box-title"><b>Ask to Aske Assistant</b></h1>
-                        <button id="fullscreen-button" type="button" onclick="toggleFullScreen()" class="btn btn-warning btn-flat" style="float: right;">Full Screen</button>
-                    </div>
-                    <div class="box-body" style="height: 82vh;">
-                        <div class="direct-chat-messages" id="chat-messages">
-                            <div class="direct-chat-msg left">
-                                <div class="direct-chat-info clearfix">
-                                    <span class="direct-chat-name pull-left">Assistant</span>
-                                </div>
-                                <img loading="lazy" class="direct-chat-img" src="../../../static/asktoaske/images/OIP.jpeg" alt="message user image">
-                                <div class="chat-display">
-                                    <div class="direct-chat-text-ai direct-chat-text">Welcome to Ask to Aske, Ask me Questions regarding the document!</div>
-                                </div>
+<div class="container">
+    <div class="page-content page-container" id="page-content" style="display: none;">
+        <div class="col-md-12">
+            <div class="box box-warning direct-chat direct-chat-warning" style="border-radius: .4em; margin: 0;">
+                <div class="box-header with-border">
+                    <h1 class="box-title"><b>Ask to Aske Assistant</b></h1>
+                    <button id="fullscreen-button" type="button" onclick="toggleFullScreen()"
+                        class="btn btn-warning btn-flat" style="float: right;">Full Screen</button>
+                </div>
+                <div class="box-body" style="height: 82vh;">
+                    <div class="direct-chat-messages" id="chat-messages">
+                        <div class="direct-chat-msg left">
+                            <div class="direct-chat-info clearfix">
+                                <span class="direct-chat-name pull-left">Assistant</span>
+                            </div>
+                            <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}"
+                                alt="message user image">
+                            <div class="chat-display">
+                                <div class="direct-chat-text-ai direct-chat-text">Welcome to Ask to Aske, Ask me
+                                    Questions regarding the document!</div>
                             </div>
                         </div>
                     </div>
-                    <div class="box-footer">
-                        <div class="input-group">
-                            <input type="text" id="user-input" name="message" placeholder="Type Message ..." class="form-control">
-                            <span class="input-group-btn">
-                                <button type="button" onclick="sendMessage()" class="btn btn-warning btn-flat" style="width: 5em;">Send</button>
-                            </span>
-                        </div>
+                </div>
+                <div class="box-footer">
+                    <div class="input-group">
+                        <input type="text" id="user-input" name="message" placeholder="Type Message ..."
+                            class="form-control">
+                        <span class="input-group-btn">
+                            <button type="button" onclick="sendMessage()" class="btn btn-warning btn-flat"
+                                style="width: 5em;">Send</button>
+                        </span>
                     </div>
                 </div>
             </div>
-        </div>   
-    </div> 
-    <br>
+        </div>
+    </div>
+</div>
+<br>
 
-    <script>
-        const chatToggle = document.querySelector('.page-content');
-        const chatbtnToggle = document.querySelector('.chatbot_btn');
-        const sendMessageUrl = "{% url 'asktoaske:send_message' %}";
-        chatToggle.style.display = "block";
-        
-        function sendMessage() {
-            const userInput = document.getElementById('user-input').value;
-            const chatDisplay = document.getElementById('chat-messages');
-    
-            // Display user's message
-            chatDisplay.innerHTML += `
+<script>
+    const chatToggle = document.querySelector('.page-content');
+    const sendMessageUrl = "{% url 'asktoaske:send_message' %}";
+    const chatDisplay = document.getElementById('chat-messages');
+
+    chatToggle.style.display = "block";
+
+    function sendMessage() {
+        const userInput = document.getElementById('user-input').value;
+
+        // Display user's message
+        chatDisplay.innerHTML += `
                 <div class="direct-chat-msg right">
                     <div class="direct-chat-info clearfix">
                         <span class="direct-chat-name pull-right">You</span>
                     </div>
-                    <img loading="lazy" class="direct-chat-img" src="../../../static/asktoaske/images/analyzer.png" alt="message user image">
+                    <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/analyzer.png' %}" alt="message user image">
                     <div class="chat-display">
                         <div class="direct-chat-text">${userInput}</div>
                     </div>
+                </div>
+                <div id="typing-indicator">
+                <div class="direct-chat-msg left">
+                    <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Assistant</span>
+                    </div>
+                    <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}"
+                        alt="message user image">
+                    <div class="chat-display">
+                        <div class="direct-chat-text-ai direct-chat-text">Thinking...</div>
+                    </div>
+                </div>
                 </div>`;
-    
-            // Clear input field
-            document.getElementById('user-input').value = '';
-    
-            // Send message to backend
-            fetch(sendMessageUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken')
-                },
-                body: JSON.stringify({ message: userInput })
-            })
+
+        // Clear input field
+        document.getElementById('user-input').value = '';
+
+        // Send message to backend
+        fetch(sendMessageUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({ message: userInput })
+        })
             .then(response => response.json())
             .then(data => {
+                // Remove typing indicator
+                const typingIndicator = document.getElementById('typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+
                 // Replace newlines with <br> for proper HTML rendering
                 let assistantReply = data.reply.replace(/\n/g, '<br>');
-    
+
                 // Replace **text** with <b>text</b> for bold text rendering
                 assistantReply = assistantReply.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-    
+
                 // Display assistant's response
                 chatDisplay.innerHTML += `
                     <div class="direct-chat-msg left">
                         <div class="direct-chat-info clearfix">
                             <span class="direct-chat-name pull-left">Assistant</span>
                         </div>
-                        <img loading="lazy" class="direct-chat-img" src=".../../../static/asktoaske/images/OIP.jpeg" alt="message user image">
+                        <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}" alt="message user image">
                         <div class="chat-display">
                             <div class="direct-chat-text">${assistantReply}</div>
                         </div>
                     </div>`;
             })
-            .catch(error => console.error('Error:', error));
-        }
-    
-        // CSRF token for Django
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // CSRF token for Django
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
                 }
             }
-            return cookieValue;
         }
-    </script>
+        return cookieValue;
+    }
+</script>
 {% endblock index %}

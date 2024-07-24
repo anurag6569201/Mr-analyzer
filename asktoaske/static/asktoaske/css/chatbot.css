@@ -309,3 +309,19 @@
     display: flex;
     align-items: center;
 }
+#typing-indicator {
+    width: 100%;
+    animation: twinkle 1.5s infinite;
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.1;
+    }
+}

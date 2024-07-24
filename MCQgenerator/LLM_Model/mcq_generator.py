@@ -1,7 +1,7 @@
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chains import SequentialChain
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import GoogleGenerativeAI
 from .utils import TEMPLATE0,TEMPLATE1,TEMPLATE2,RESPONSE_JSON
 import os
 import json
@@ -13,7 +13,7 @@ load_dotenv()
 google_gemini_api=os.getenv("GOOGLE_API_KEY")
 
 # loading the llm model of genai through langchain
-llm_model=ChatGoogleGenerativeAI(model="gemini-1.5-pro",google_api_key=google_gemini_api)
+llm_model=GoogleGenerativeAI(model="gemini-pro", google_api_key=google_gemini_api)
 
 # created prompt templates
 
@@ -47,18 +47,15 @@ generate_evaluate_chain=SequentialChain(
     chains=[para_chain,quiz_chain, review_chain], 
     input_variables=["disease_name", "number", "response_json"],
     output_variables=["para", "quiz", "review"], 
-    verbose=True,
 )
 
 def getting_form(disease_name,nos):
     MCQ_NUMBERS=nos
     DISEASE_NAME=disease_name
-    response=generate_evaluate_chain(
-        {
-            "number":MCQ_NUMBERS,
-            "disease_name":DISEASE_NAME,
-            "response_json":json.dumps(RESPONSE_JSON)
-        }
-    )
+    response = generate_evaluate_chain.invoke({
+        "number": MCQ_NUMBERS,
+        "disease_name": DISEASE_NAME,
+        "response_json": json.dumps(RESPONSE_JSON)
+    })
     new_quiz_df=pd.DataFrame([response])
     return new_quiz_df
