@@ -60,57 +60,51 @@
     chatToggle.style.display = "block";
 
     function sendMessage() {
-        const userInput = document.getElementById('user-input').value;
+    const userInput = document.getElementById('user-input').value;
 
-        // Display user's message
-        chatDisplay.innerHTML += `
-            <div class="direct-chat-msg right">
+    // Display user's message
+    chatDisplay.innerHTML += `
+        <div class="direct-chat-msg right">
+            <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-right">You</span>
+            </div>
+            <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/analyzer.png' %}" alt="message user image">
+            <div class="chat-display">
+                <div class="direct-chat-text">${userInput}</div>
+            </div>
+        </div>
+        <div id="typing-indicator">
+            <div class="direct-chat-msg left">
                 <div class="direct-chat-info clearfix">
-                    <span class="direct-chat-name pull-right">You</span>
+                    <span class="direct-chat-name pull-left">Assistant</span>
                 </div>
-                <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/analyzer.png' %}" alt="message user image">
+                <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}" alt="message user image">
                 <div class="chat-display">
-                    <div class="direct-chat-text">${userInput}</div>
+                    <div class="direct-chat-text-ai direct-chat-text">Thinking...</div>
                 </div>
             </div>
-            <div id="typing-indicator">
-                <div class="direct-chat-msg left">
-                    <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-left">Assistant</span>
-                    </div>
-                    <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}" alt="message user image">
-                    <div class="chat-display">
-                        <div class="direct-chat-text-ai direct-chat-text">Thinking...</div>
-                    </div>
-                </div>
-            </div>`;
+        </div>`;
 
-        // Clear input field
-        document.getElementById('user-input').value = '';
+    // Clear input field
+    document.getElementById('user-input').value = '';
 
-        // Send message to backend
-        fetch(sendMessageUrl, {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken')
-            },
-            body: JSON.stringify({ message: userInput })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
+    // Create a new XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', sendMessageUrl, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+
+    // Define the callback function for when the request completes
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
             // Remove typing indicator
             const typingIndicator = document.getElementById('typing-indicator');
             if (typingIndicator) {
                 typingIndicator.remove();
             }
+
+            // Parse the JSON response
+            const data = JSON.parse(xhr.responseText);
 
             // Replace newlines with <br> for proper HTML rendering
             let assistantReply = data.reply.replace(/\n/g, '<br>');
@@ -129,22 +123,37 @@
                         <div class="direct-chat-text">${assistantReply}</div>
                     </div>
                 </div>`;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Display error message to user
-            chatDisplay.innerHTML += `
-                <div class="direct-chat-msg left">
-                    <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-left">Assistant</span>
-                    </div>
-                    <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}" alt="message user image">
-                    <div class="chat-display">
-                        <div class="direct-chat-text">Sorry, there was an error processing your request. Please try again later.</div>
-                    </div>
-                </div>`;
-        });
+        } else {
+            // Handle error
+            handleError();
+        }
+    };
+
+    // Define the callback function for when the request fails
+    xhr.onerror = function () {
+        handleError();
+    };
+
+    // Define the function to handle errors
+    function handleError() {
+        console.error('Error:', xhr.statusText);
+        // Display error message to user
+        chatDisplay.innerHTML += `
+            <div class="direct-chat-msg left">
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-name pull-left">Assistant</span>
+                </div>
+                <img loading="lazy" class="direct-chat-img" src="{% static 'asktoaske/images/OIP.jpeg' %}" alt="message user image">
+                <div class="chat-display">
+                    <div class="direct-chat-text">Sorry, there was an error processing your request. Please try again later.</div>
+                </div>
+            </div>`;
     }
+
+    // Send the request with the user input
+    xhr.send(JSON.stringify({ message: userInput }));
+}
+
 
     // CSRF token for Django
     function getCookie(name) {
