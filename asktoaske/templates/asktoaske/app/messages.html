@@ -92,6 +92,8 @@
         // Send message to backend
         fetch(sendMessageUrl, {
             method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken')
@@ -141,5 +143,22 @@
         }
         return cookieValue;
     }
+    function toggleFullScreen() {
+        const chatBox = document.getElementById('page-content');
+        const fullscreenButton = document.getElementById('fullscreen-button');
+
+        if (!document.fullscreenElement) {
+            chatBox.requestFullscreen().catch(err => {
+                console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+            });
+            fullscreenButton.textContent = 'Exit';
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+            fullscreenButton.textContent = 'Full Screen';
+        }
+    }
+
 </script>
 {% endblock index %}

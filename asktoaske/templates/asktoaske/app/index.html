@@ -25,5 +25,11 @@
         </div>
     </div>
 </div>
-
+<script>
+    document.getElementById('id_pdf_file').addEventListener('change', function(event) {
+        if (event.target.files.length > 0) {
+            document.getElementById('form-submitted-btn').click()
+        }
+    });
+</script>
 {% endblock index %}
