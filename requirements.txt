@@ -77,10 +77,10 @@ jupyterlab_pygments==0.3.0
 kaggle==1.6.12
 kiwisolver==1.4.5
 kubernetes==30.1.0
-langchain==0.2.10
+langchain==0.2.11
 langchain-community==0.2.9
-langchain-core==0.2.22
-langchain-google-genai==1.0.7
+langchain-core==0.2.23
+langchain-google-genai==1.0.8
 langchain-pinecone==0.1.2
 langchain-text-splitters==0.2.2
 langsmith==0.1.93
