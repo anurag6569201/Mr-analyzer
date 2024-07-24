@@ -16,7 +16,7 @@ google_gemini_api = os.getenv("GOOGLE_API_KEY")
 # Load and prepare data
 def prepare_vector_store(persist_directory="db"):
     text_chunks=getting_chunks_pdf()
-    embedding = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+    embedding = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
     vectordb = Chroma.from_documents(
         documents=text_chunks,
         embedding=embedding,

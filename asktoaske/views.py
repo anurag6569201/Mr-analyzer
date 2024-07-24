@@ -4,20 +4,33 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from .forms import PDFDocumentForm
 from .LLM_Model.test import get_response
-
+import os
+from django.conf import settings
 def index(request):
     if request.method == 'POST':
         form = PDFDocumentForm(request.POST, request.FILES)
         if form.is_valid():
+            pdfs_path = os.path.join(settings.MEDIA_ROOT, 'pdfs/')
+            for filename in os.listdir(pdfs_path):
+                file_path = os.path.join(pdfs_path, filename)
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
             form.save()
-            return redirect("asktoaske:asktoaske")
+            return redirect("asktoaske:messages")
     else:
         form = PDFDocumentForm()
     
     context = {
         'form': form
     }
-    return render(request, 'asktoaske/app/index.html',context)
+    return render(request, 'asktoaske/app/index.html', context)
+
+def messages(request):
+    context = {
+
+    }
+    return render(request, 'asktoaske/app/messages.html',context)
+
 
 @csrf_exempt
 def send_message(request):

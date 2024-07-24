@@ -172,29 +172,3 @@ form label{
 }
 
 /* conversations */
-.conversations{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 1rem;
-}
-.message-box {
-    padding: 10px;
-    border-radius: 10px;
-}
-.message-box p{
-    margin: 0;
-}
-.message-box.left {
-    background-color: #f1f1f1;
-    color: black;
-    font-size: 13px;
-    left: 0;
-}
-
-.message-box.right {
-    background-color: #333;
-    color: #fff;
-    font-size: 13px;
-    right: 0;
-}
