@@ -29,6 +29,8 @@ def index(request):
     return render(request, 'asktoaske/app/index.html', context)
 
 def messages(request):
+    query="tell me the first word of the document?"
+    get_response(query)
     context = {
 
     }
