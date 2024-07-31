@@ -20,9 +20,7 @@ google_gemini_api = os.getenv("GOOGLE_API_KEY")
 
 # Initialize global variables for reusability
 text_chunks = getting_chunks_pdf()
-embedding_models = [
-    GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=google_gemini_api)
-]
+embedding_model =GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=google_gemini_api)
 llm_model = ChatGoogleGenerativeAI(model="gemini-1.5-pro", google_api_key=google_gemini_api)
 
 persist_directory = "db"
@@ -61,13 +59,8 @@ def get_vector_store(embedding):
         raise
 
 def get_retriever():
-    for embedding in embedding_models:
-        try:
-            vectordb = get_vector_store(embedding)
-            return vectordb.as_retriever()
-        except Exception as e:
-            logger.error(f"Error with embedding model {embedding.model}: {e}")
-    raise RuntimeError("All embedding models failed")
+    vectordb = get_vector_store(embedding_model)
+    return vectordb.as_retriever()
 
 def get_chain():
     system_prompt = (
