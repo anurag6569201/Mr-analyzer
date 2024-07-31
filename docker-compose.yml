@@ -2,10 +2,10 @@ version: '3.12'
 services:
   django:
     container_name: mr-analyzer
-    build: 
+    build:
       context: ./
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./:/usr/src/app/
+      - .:/app
     ports:
-      - 8001:8000
+      - "8001:8000"

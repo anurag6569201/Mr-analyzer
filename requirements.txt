@@ -198,3 +198,6 @@ wordcloud
 wrapt
 yarl
 zipp
+langchain-community
+langchain-google-genai
+langchain-core

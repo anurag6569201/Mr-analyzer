@@ -1,19 +1,16 @@
 FROM python:3.12
 
-WORKDIR /usr/src/app/
+WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE 1
-
-ENV PYTHONBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
 RUN pip install --upgrade pip
 
-COPY ./requirements.txt /usr/src/app/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
+RUN pip install -r /app/requirements.txt
 
-RUN pip install -r requirements.txt
+COPY ./entrypoint.sh /app/entrypoint.sh
+COPY . /app/
 
-COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
-
-COPY . /usr/src/app/
-
-ENTRYPOINT [ "/usr/src/app/entrypoint.sh" ]
+ENTRYPOINT ["/app/entrypoint.sh"]
