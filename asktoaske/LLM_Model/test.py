@@ -21,10 +21,10 @@ google_gemini_api = os.getenv("GOOGLE_API_KEY")
 # Initialize global variables for reusability
 text_chunks = getting_chunks_pdf()
 embedding_models = [
-    GoogleGenerativeAIEmbeddings(model="models/embedding-001",google_api_key="AIzaSyAh5HbTtCHsO_ZWAtCtn_q5h2_Jw7tEfe8")
+    GoogleGenerativeAIEmbeddings(model="models/embedding-001",google_api_key=google_gemini_api)
 ]
 llm_models = [
-    ChatGoogleGenerativeAI(model="gemini-1.5-pro", google_api_key="AIzaSyAh5HbTtCHsO_ZWAtCtn_q5h2_Jw7tEfe8")
+    ChatGoogleGenerativeAI(model="gemini-1.5-pro", google_api_key=google_gemini_api)
 ]
 persist_directory = "db"
 
