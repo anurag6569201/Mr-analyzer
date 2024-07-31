@@ -21,11 +21,10 @@ google_gemini_api = os.getenv("GOOGLE_API_KEY")
 # Initialize global variables for reusability
 text_chunks = getting_chunks_pdf()
 embedding_models = [
-    GoogleGenerativeAIEmbeddings(model="models/embedding-001",google_api_key=google_gemini_api)
+    GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=google_gemini_api)
 ]
-llm_models = [
-    ChatGoogleGenerativeAI(model="gemini-1.5-pro", google_api_key=google_gemini_api)
-]
+llm_model = ChatGoogleGenerativeAI(model="gemini-1.5-pro", google_api_key=google_gemini_api)
+
 persist_directory = "db"
 
 # Basic memory class
@@ -78,22 +77,17 @@ def get_chain():
         "Context: {context}"
     )
     
-    for llm_model in llm_models:
-        try:
-            prompt = ChatPromptTemplate.from_messages(
-                [
-                    ("system", system_prompt),
-                    ("human", "{input}"),
-                ]
-            )
-            question_answer_chain = create_stuff_documents_chain(llm_model, prompt)
-            retriever = get_retriever()
-            chain = create_retrieval_chain(retriever, question_answer_chain)
-            logger.info("Question-answering chain created successfully.")
-            return chain
-        except Exception as e:
-            logger.error(f"Error with LLM model {llm_model.model}: {e}")
-    raise RuntimeError("All LLM models failed")
+    prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", system_prompt),
+            ("human", "{input}"),
+        ]
+    )
+    question_answer_chain = create_stuff_documents_chain(llm_model, prompt)
+    retriever = get_retriever()
+    chain = create_retrieval_chain(retriever, question_answer_chain)
+    logger.info("Question-answering chain created successfully.")
+    return chain
 
 def get_response(query):
     chain = get_chain()
@@ -107,4 +101,3 @@ def get_response(query):
     except Exception as e:
         logger.error(f"Error while getting response: {e}")
         return "Sorry, I couldn't process your request."
-
