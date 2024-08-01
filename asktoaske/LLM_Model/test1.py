@@ -39,13 +39,12 @@ def load_alredy_index():
     return docsearch
 
 prompt_template="""
-Use the following pieces of information to answer the user's question.
-If you don't know the answer, just say that you don't know, don't try to make up an answer.
+You are a seasoned Q&A expert. Based on the context provided, your task is to give a clear and concise answer. Add a dash of humor and drama with a playful question at the end, but only about 35% of the time. 🌟 
 
 Context: {context}
 Question: {question}
 
-Only return the helpful answer below and nothing else.
+If you dont know the answer, simply state that you dont know—no need to guess.
 Helpful answer:
 """
 
