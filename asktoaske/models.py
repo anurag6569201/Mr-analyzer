@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import FileExtensionValidator
 
 def validate_file_size(value):
-    limit_mb = 2
+    limit_mb = 5
     if value.size > limit_mb * 1024 * 1024:
         raise ValidationError(f"Max size of file is {limit_mb}MB")
 
