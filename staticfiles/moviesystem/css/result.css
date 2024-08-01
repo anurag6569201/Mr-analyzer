@@ -1,0 +1,73 @@
+.poster_img{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    border-radius: 5px;
+}
+.poster_img img{
+    width: 90%;
+    border-radius: 5px;
+}
+.title_movie{
+    font-weight: 700;
+    color: grey;
+}
+.user_score{
+    background-color: #07372C;
+    padding: 4px 10px;
+    color: white;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.score_label{
+    font-weight: 600;
+    color: white;
+    padding-left: 5px;
+}
+.user_score_box{
+    display: flex;
+    align-items: baseline;
+    justify-content: left;
+    flex-direction: column;
+}
+.movie_overview{
+    color: white;
+}
+.movie_btn{
+    background-color: #07372c;
+    color: white;
+    font-weight: 600;
+    border: 1px solid #0b2922;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+.movie_card_main{
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: 50vh 90vh;
+}
+.movie_card{
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.backimage{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55vw;
+    min-height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+.adult_movie{
+    border: 1px solid grey;
+    padding: 3px;
+    font-weight: 600;
+}
+
+@media (max-width:600px){
+    .backimage{
+        background-size: 140%;
+    }
+}

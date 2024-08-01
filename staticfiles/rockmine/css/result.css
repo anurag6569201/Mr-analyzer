@@ -1,0 +1,39 @@
+.result1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#id_data{
+    font-family: "SF Pro";
+    width: 100%;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+    padding: 0 10px;
+}
+.result1 img {
+    max-width: 500px;
+}
+.copy-btn{
+    border: 1px solid rgb(212, 212, 212);
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: 12px;
+}
+.CodeMirror,
+#codeSnippet{
+    max-height: 150px;
+}
+
+.col-md-5 h3{
+    font-family: "SF Pro";
+    width: 100%;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+    padding: 0 10px;
+}
