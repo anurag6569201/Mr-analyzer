@@ -12,8 +12,9 @@ def getting_chunks_pdf():
     pdf_loader = PyPDFDirectoryLoader(pdfs_directory)
     data = pdf_loader.load()
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200
+        chunk_size=400,
+        chunk_overlap=20
     )
     text_chunks = text_splitter.split_documents(data)
     return text_chunks
+

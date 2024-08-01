@@ -20,9 +20,13 @@ google_gemini_api = os.getenv("GOOGLE_API_KEY")
 
 # Initialize global variables for reusability
 text_chunks = getting_chunks_pdf()
-embedding_model =GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=google_gemini_api)
-llm_model = ChatGoogleGenerativeAI(model="gemini-1.5-pro", google_api_key=google_gemini_api)
-
+print(text_chunks)
+embedding_models = [
+    GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+]
+llm_models = [
+    ChatGoogleGenerativeAI(model="gemini-1.5-pro", google_api_key="AIzaSyAh5HbTtCHsO_ZWAtCtn_q5h2_Jw7tEfe8")
+]
 persist_directory = "db"
 
 # Basic memory class
@@ -59,8 +63,13 @@ def get_vector_store(embedding):
         raise
 
 def get_retriever():
-    vectordb = get_vector_store(embedding_model)
-    return vectordb.as_retriever()
+    for embedding in embedding_models:
+        try:
+            vectordb = get_vector_store(embedding)
+            return vectordb.as_retriever()
+        except Exception as e:
+            logger.error(f"Error with embedding model {embedding.model}: {e}")
+    raise RuntimeError("All embedding models failed")
 
 def get_chain():
     system_prompt = (
@@ -70,17 +79,22 @@ def get_chain():
         "Context: {context}"
     )
     
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            ("system", system_prompt),
-            ("human", "{input}"),
-        ]
-    )
-    question_answer_chain = create_stuff_documents_chain(llm_model, prompt)
-    retriever = get_retriever()
-    chain = create_retrieval_chain(retriever, question_answer_chain)
-    logger.info("Question-answering chain created successfully.")
-    return chain
+    for llm_model in llm_models:
+        try:
+            prompt = ChatPromptTemplate.from_messages(
+                [
+                    ("system", system_prompt),
+                    ("human", "{input}"),
+                ]
+            )
+            question_answer_chain = create_stuff_documents_chain(llm_model, prompt)
+            retriever = get_retriever()
+            chain = create_retrieval_chain(retriever, question_answer_chain)
+            logger.info("Question-answering chain created successfully.")
+            return chain
+        except Exception as e:
+            logger.error(f"Error with LLM model {llm_model.model}: {e}")
+    raise RuntimeError("All LLM models failed")
 
 def get_response(query):
     chain = get_chain()
@@ -94,3 +108,4 @@ def get_response(query):
     except Exception as e:
         logger.error(f"Error while getting response: {e}")
         return "Sorry, I couldn't process your request."
+

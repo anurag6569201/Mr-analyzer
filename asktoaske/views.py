@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 logger = logging.getLogger(__name__)
 from .forms import PDFDocumentForm
-from .LLM_Model.test import get_response
+from .LLM_Model.test1 import get_response
 import os
 from django.conf import settings
 def index(request):
