@@ -9,6 +9,14 @@ from .forms import PDFDocumentForm
 from .LLM_Model.test1 import get_response
 import os
 from django.conf import settings
+
+
+
+
+# LLM model using hugging face
+from .LLM_Model.test1 import initialize_pinecone
+from analyzer.asktoaske_hugging import text_split
+
 def index(request):
     if request.method == 'POST':
         form = PDFDocumentForm(request.POST, request.FILES)
@@ -19,6 +27,8 @@ def index(request):
                 if os.path.isfile(file_path):
                     os.remove(file_path)
             form.save()
+            text_chunks = text_split()
+            initialize_pinecone(text_chunks)
             return redirect("asktoaske:messages")
     else:
         form = PDFDocumentForm()
@@ -29,12 +39,8 @@ def index(request):
     return render(request, 'asktoaske/app/index.html', context)
 
 def messages(request):
-    query="tell me the first word of the document?"
-    get_response(query)
-    context = {
 
-    }
-    return render(request, 'asktoaske/app/messages.html',context)
+    return render(request, 'asktoaske/app/messages.html')
 
 @csrf_exempt
 def send_message(request):

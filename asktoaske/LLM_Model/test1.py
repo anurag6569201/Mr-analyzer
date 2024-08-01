@@ -2,8 +2,7 @@ from asyncio.log import logger
 from langchain import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import Pinecone
-import pinecone
+import os
 from langchain.prompts import PromptTemplate
 from analyzer.asktoaske_hugging import text_split
 
@@ -15,34 +14,29 @@ def download_hugging_face_embeddings():
 embeddings = download_hugging_face_embeddings()
 
 
-# getting text chunks
-text_chunks = text_split()
-
 #Initializing the Pinecone
-import os
-from pinecone import Pinecone
-pinecone_api=os.getenv("PINECONE_API_KEY")
-pc = Pinecone(api_key=pinecone_api)
-index = pc.Index("mr-analyzer")
-index_name="mr-analyzer"
-index.delete(delete_all=True)
+def initialize_pinecone(text_chunks):
+    import os
+    from pinecone import Pinecone
+    pinecone_api=os.getenv("PINECONE_API_KEY")
+    pc = Pinecone(api_key=pinecone_api)
+    index = pc.Index("mr-analyzer")
+    index_name="mr-analyzer"
+    index.delete(delete_all=True)
 
-from langchain.vectorstores import Pinecone as PC
-docs_chunks = [t.page_content for t in text_chunks]
-pinecone_index = PC.from_texts(
-    docs_chunks,
-    embeddings,
-    index_name='mr-analyzer'
-)
+    from langchain.vectorstores import Pinecone as PC
+    docs_chunks = [t.page_content for t in text_chunks]
+    pinecone_index = PC.from_texts(
+        docs_chunks,
+        embeddings,
+        index_name='mr-analyzer'
+    )
 
-#If we already have an index we can load it like this
-docsearch=PC.from_existing_index(index_name, embeddings)
-
-query = "What anurag know in tech"
-
-docs=docsearch.similarity_search(query, k=3)
-
-print("Result", docs)
+def load_alredy_index():
+    from langchain.vectorstores import Pinecone as PC
+    index_name="mr-analyzer"
+    docsearch=PC.from_existing_index(index_name, embeddings)
+    return docsearch
 
 prompt_template="""
 Use the following pieces of information to answer the user's question.
@@ -65,8 +59,8 @@ llm_model=ChatGoogleGenerativeAI(model="gemini-pro",google_api_key=google_gemini
 
 qa=RetrievalQA.from_chain_type(
     llm=llm_model, 
-    chain_type="stuff", 
-    retriever=docsearch.as_retriever(search_kwargs={'k': 2}),
+    chain_type="stuff",
+    retriever=load_alredy_index().as_retriever(search_kwargs={'k': 2}),
     return_source_documents=True, 
     chain_type_kwargs=chain_type_kwargs)
 
