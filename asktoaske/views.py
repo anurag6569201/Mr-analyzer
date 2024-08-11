@@ -39,7 +39,6 @@ def index(request):
     return render(request, 'asktoaske/app/index.html', context)
 
 def messages(request):
-
     return render(request, 'asktoaske/app/messages.html')
 
 @csrf_exempt
