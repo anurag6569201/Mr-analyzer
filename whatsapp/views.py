@@ -12,7 +12,10 @@ from wordcloud import WordCloud, STOPWORDS
 import emoji
 import csv
 from collections import Counter, defaultdict
+from whatsapp.llm_csv_agent import ask_to_csv_agent
 
+# def response_to_whatsapp(request):
+#     pass
 def whatsapp(request):
     if request.method == 'POST':
         # getting the form
