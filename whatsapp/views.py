@@ -12,8 +12,10 @@ from wordcloud import WordCloud, STOPWORDS
 import emoji
 import csv
 from collections import Counter, defaultdict
-from whatsapp.llm_csv_agent import ask_to_csv_agent
 
+import matplotlib
+matplotlib.use('Agg')  # Use a non-GUI backend
+import matplotlib.pyplot as plt
 # def response_to_whatsapp(request):
 #     pass
 def whatsapp(request):
@@ -83,41 +85,62 @@ def path6(request):
     return redirect('whatsapp:analysis')
 
 def analysis(request):
-    contactMod=UploadedFile.objects.first()
-    df = pd.read_csv('whatsapp/static/whatsapp/temp/data.csv')
+    # Retrieve the first UploadedFile record
+    contactMod = UploadedFile.objects.first()
+    
+    # Ensure the file exists before reading
+    if not contactMod or not contactMod.file:
+        return render(request, "whatsapp/app/analysis.html", {"error": "No file available for analysis."})
+
+    # Read the CSV file
+    try:
+        df = pd.read_csv('whatsapp/static/whatsapp/temp/data.csv')
+    except Exception as e:
+        return render(request, "whatsapp/app/analysis.html", {"error": f"Failed to load CSV: {str(e)}"})
+
+    # Check if DataFrame is empty
+    if df.empty:
+        return render(request, "whatsapp/app/analysis.html", {"error": "No data in the CSV file."})
+
+    # Group by "Sender" and count messages
     message_counts = df.groupby("Sender")["Message"].count().sort_values(ascending=False)
     message_counts = message_counts.reset_index()
 
-    # top user name
-    obj=message_counts.head(1).Sender
-    ob=np.array(obj)
-    top_user=ob[0]
+    # Check if there are any users
+    if message_counts.empty:
+        return render(request, "whatsapp/app/analysis.html", {"error": "No messages found in the data."})
 
-    # emoji used
+    # Get top user
+    top_user = message_counts.head(1)["Sender"].iloc[0]
+
+    # Emoji usage analysis
     emoji_counters = defaultdict(Counter)
     emojis_list = map(lambda x: ''.join(x.split()), emoji.EMOJI_DATA.keys())
     r = re.compile('|'.join(re.escape(p) for p in emojis_list))
     users_to_count = df["Sender"].unique()
+
     for idx, row in df.iterrows():
         sender = row["Sender"]
         if sender in users_to_count:
             emojis_found = r.findall(str(row["Message"]))
             emoji_counters[sender].update(emojis_found)
+
     combined_emoj_ctr = Counter()
     for user_ctr in emoji_counters.values():
         combined_emoj_ctr.update(user_ctr)
-        
-    for user_ctr in emoji_counters.values():
-        combined_emoj_ctr.update(user_ctr)
-    emoji_data = combined_emoj_ctr.most_common() 
 
+    emoji_data = combined_emoj_ctr.most_common()
 
-    context={
-        'contactMod':contactMod,
-        'top_user':top_user,
-        'emoji_data':emoji_data
+    context = {
+        'contactMod': contactMod,
+        'top_user': top_user,
+        'emoji_data': emoji_data
     }
-    return render(request, "whatsapp/app/analysis.html",context)
+
+    # Close any open matplotlib plots to avoid issues
+    plt.close('all')
+
+    return render(request, "whatsapp/app/analysis.html", context)
 
 # ---------------------------------------#
 # Whatsapp functions for genrating images
@@ -249,29 +272,42 @@ def emojipng(df):
     plt.tight_layout()
     plt.savefig('whatsapp/static/whatsapp/temp/emoji.png')
 
-# function for getting time and msg analysis
 def activepng(df):
-    # extracting timastamp from the df dataframe and droping rows with invalid timestamp formate
+    # Check if DataFrame is empty
+    if df.empty:
+        print("DataFrame is empty. Please check your input data.")
+        return
+    
     try:
+        # Convert to datetime and filter valid timestamps
         df['Timestamp'] = pd.to_datetime(df['Timestamp'], errors='coerce')
         df = df.dropna(subset=['Timestamp'])
-    except ValueError:
-        print("Timestamp format does not match expected format.")
+
+        if df.empty:
+            print("No valid timestamps found after filtering.")
+            return
+        
+        # Extract hour and compute hourly activity
+        df['Hour'] = df['Timestamp'].dt.hour
+        hourly_activity = df.groupby('Hour').size()
+
+        if hourly_activity.empty:
+            print("No data available for hourly activity plotting.")
+            return
+
+        # Plot the graph
+        plt.figure(figsize=(12, 12))
+        hourly_activity.plot(kind='bar', color='skyblue')
+        plt.title('Overall Hourly Activity Pattern')
+        plt.xlabel('Hour of the Day')
+        plt.ylabel('Total Number of Messages')
+        plt.xticks(rotation=0)
+        plt.grid(axis='y', linestyle='--', alpha=0.7)
+        plt.tight_layout()
+        plt.savefig('whatsapp/static/whatsapp/temp/active.png')
     
-    # extracted hour from the timestamp and grouping it with index or we can say number of msg indirectly
-    df['Hour'] = df['Timestamp'].dt.hour
-    hourly_activity = df.groupby('Hour').size()
-    
-    # plotting the graph using matplot and pandas
-    plt.figure(figsize=(12, 12))
-    hourly_activity.plot(kind='bar', color='skyblue')
-    plt.title('Overall Hourly Activity Pattern')
-    plt.xlabel('Hour of the Day')
-    plt.ylabel('Total Number of Messages')
-    plt.xticks(rotation=0)
-    plt.grid(axis='y', linestyle='--', alpha=0.7)
-    plt.tight_layout()
-    plt.savefig('whatsapp/static/whatsapp/temp/active.png')
+    except ValueError as e:
+        print(f"Error processing data: {e}")
 
 # function for getting user activity analysis
 def useractivepng(df):
@@ -307,57 +343,87 @@ def useractivepng(df):
     plt.savefig('whatsapp/static/whatsapp/temp/usertime.png')
 
 # function for getting heatmap of weekely msg insights analysis
+
 def heatmappng(df):
-    # getting timestamp from df dataframe if its valid and making it to valid datetime
+    # Check if DataFrame is empty
+    if df.empty:
+        print("DataFrame is empty. Please check your input data.")
+        return
+
     try:
+        # Convert to datetime and filter valid timestamps
         df['Timestamp'] = pd.to_datetime(df['Timestamp'], errors='coerce')
         df = df.dropna(subset=['Timestamp'])
-    except ValueError:
-        print("Timestamp format does not match expected format.")
-    
-    # extracting hour and week days from the dataframe
-    df['Hour'] = df['Timestamp'].dt.hour
-    df['Day_of_Week'] = df['Timestamp'].dt.dayofweek
 
-    # grouping week and hour
-    activity_by_day_hour = df.groupby(['Day_of_Week', 'Hour']).size().unstack(fill_value=0)
-    activity_by_day_hour = activity_by_day_hour.reindex(index=range(7))
+        if df.empty:
+            print("No valid timestamps found after filtering.")
+            return
+
+        # Extract hour and weekday
+        df['Hour'] = df['Timestamp'].dt.hour
+        df['Day_of_Week'] = df['Timestamp'].dt.dayofweek
+
+        # Group by weekday and hour
+        activity_by_day_hour = df.groupby(['Day_of_Week', 'Hour']).size().unstack(fill_value=0)
+
+        # Ensure all days are included
+        activity_by_day_hour = activity_by_day_hour.reindex(index=range(7), fill_value=0)
+
+        # Check if data is available for plotting
+        if activity_by_day_hour.empty or (activity_by_day_hour.values.sum() == 0):
+            print("No activity data available for plotting.")
+            return
+
+        # Plot heatmap
+        plt.figure(figsize=(12, 12))
+        sns.heatmap(activity_by_day_hour, cmap='rocket', square=False)
+        plt.title('Activity by Day of the Week and Hour')
+        plt.xlabel('Hour of the Day')
+        plt.ylabel('Day of the Week')
+        plt.yticks(ticks=range(7), labels=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], rotation=0)
+        plt.tight_layout()
+        plt.savefig('whatsapp/static/whatsapp/temp/heatmap.png')
     
-    # plotting the graph using matlplot and seaborn
-    plt.figure(figsize=(12,12))
-    sns.heatmap(activity_by_day_hour, cmap='rocket', square=False)
-    plt.title('Activity by Day of the Week and Hour')
-    plt.xlabel('Hour of the Day')
-    plt.ylabel('Day of the Week')
-    plt.yticks(ticks=range(7), labels=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], rotation=0)
-    plt.tight_layout()
-    plt.savefig('whatsapp/static/whatsapp/temp/heatmap.png')
+    except ValueError as e:
+        print(f"Error processing data: {e}")
 
 # function for getting word graph that most used analysis
 def wordpng(df):
-    # wordcloud
-    comment_words = ' '
+    # Check if DataFrame is empty
+    if df.empty:
+        print("DataFrame is empty. Please check your input data.")
+        return
+
+    # Initialize empty string for words
+    comment_words = ''
     
-    # the wors dont wanted to show on word image
+    # Update stopwords to exclude unwanted words
     stopwords = STOPWORDS.update(['ok'])
+
+    # Extract words from messages
+    for val in df['Message'].dropna().values:
+        val = str(val).strip()  # Convert to string and strip unnecessary spaces
+
+        # Skip empty messages
+        if not val:
+            continue
+
+        # Tokenize and normalize words
+        tokens = val.split()
+        tokens = [word.lower() for word in tokens if word.isalpha()]  # Keep only alphabetic words
+
+        # Append to comment words
+        comment_words += ' '.join(tokens) + ' '
+
+    # Ensure there are words to generate the word cloud
+    if not comment_words.strip():
+        print("No valid words available to generate a word cloud.")
+        return
+
+    # Generate the word cloud
+    wordcloud = WordCloud(width=800, height=800, background_color='black', stopwords=stopwords, min_font_size=10)
+    wordcloud.generate(comment_words)
     
-    # getting the words and storing it to comment words
-    for val in df.Message.values: 
-        val = str(val) 
-        tokens = val.split() 
-            
-        for i in range(len(tokens)): 
-            tokens[i] = tokens[i].lower() 
-            
-        for words in tokens: 
-            comment_words = comment_words + words + ' '
-    
-    # wordcloud image designing
-    wordcloud = WordCloud(width = 800, height = 800, 
-                    background_color ='black', 
-                    stopwords = stopwords, 
-                    min_font_size = 10).generate(comment_words) 
-    
-    # saving it to png image on the location of temperory folder
+    # Save word cloud image
     image = wordcloud.to_image()
     image.save("whatsapp/static/whatsapp/temp/word.png")
