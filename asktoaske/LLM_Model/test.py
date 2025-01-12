@@ -25,7 +25,7 @@ embedding_models = [
     GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 ]
 llm_models = [
-    ChatGoogleGenerativeAI(model="gemini-1.5-pro", google_api_key="AIzaSyAh5HbTtCHsO_ZWAtCtn_q5h2_Jw7tEfe8")
+    ChatGoogleGenerativeAI(model="gemini-1.5-pro", google_api_key=os.getenv('GOOGLE_API_KEY'))
 ]
 persist_directory = "db"
 
