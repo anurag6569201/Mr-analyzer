@@ -26,7 +26,6 @@ CSRF_TRUSTED_ORIGINS = ['https://mr-analyzer.azurewebsites.net','https://127.0.0
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -151,9 +150,3 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-JAZZMIN_SETTINGS = {
-    'site_header':"Mr-Analyzer",
-    'site_brand':"Mr-Analyzer",
-    'site_logo':'assets/images/logo.png',
-    'copyright':"Mr-Analyzer.com",
-}
