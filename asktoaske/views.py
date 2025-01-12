@@ -14,7 +14,7 @@ from django.conf import settings
 
 
 # LLM model using hugging face
-from .LLM_Model.test1 import initialize_chromadb
+from .LLM_Model.test1 import initialize_pinecone
 from analyzer.asktoaske_hugging import text_split
 
 def index(request):
@@ -28,7 +28,7 @@ def index(request):
                     os.remove(file_path)
             form.save()
             text_chunks = text_split()
-            initialize_chromadb(text_chunks)
+            initialize_pinecone(text_chunks)
             return redirect("asktoaske:messages")
     else:
         form = PDFDocumentForm()
