@@ -38,6 +38,7 @@ urlpatterns = [
     # LLMs Model project urls
     path('MCQgenerator/',include('MCQgenerator.urls')),
     path('asktoaske/',include('asktoaske.urls')),
+    path('soundtext/',include('sound_img_txt.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

@@ -1,0 +1,104 @@
+{% extends 'sound_img_txt/partial/base.html' %}
+{% load static %}
+
+{% block index %}
+<style>
+    .block1{
+        padding: 10px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        width: 100px;
+        height: 100px;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        border-left: 1px dashed black;
+        border-right: 1px dashed black;
+    }
+    .block2{
+        padding: 10px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        width: 100px;
+        height: 140px;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        border-left: 1px dashed black;
+        border-right: 1px dashed black;
+    }
+    .block3{
+        padding: 10px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        width: 100px;
+        height: 140px;
+        transform: translateY(-40px);
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        border-left: 1px dashed black;
+        border-right: 1px dashed black;
+    }
+    .block_playground{
+        display: flex;
+    }
+    .sound_highlight {
+        background-color: #fef3de;
+        color: black;
+        font-weight: bold;
+    }
+    .first_char {
+    border-left: 1px solid black;
+    font-weight: bold;
+}
+
+.last_char {
+    border-right: 1px solid black;
+    font-weight: bold;
+}
+
+</style>
+<div class="container">
+    <form method="post" action="{% url 'sound_img_txt:index' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="number_of_words">Number of Words:</label>
+            <input type="number" id="number_of_words" name="number_of_words" value="{{ number_of_words }}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="sound_to_use">Sound to Use:</label>
+            <input type="text" id="sound_to_use" name="sound_to_use" value="{{ sound }}" class="form-control">
+        </div>
+        <button type="submit" class="btn check_btn mt-3">Generate</button>
+    </form>
+    {% if data %}
+    {% for word in main_data %}
+    <div class="row">
+        <div class="col-md-2" style="display: flex;align-items: center;justify-content: left;">
+            <span style="font-size: 2.5rem;font-weight: 600;">{{word.0}}</span>
+        </div>
+        <div class="col-md-6" style="display: flex;align-items: center;justify-content: left;">
+            <div class="block_playground">
+                {% for chars in word.0 %}
+                    {% if forloop.first %}
+                    <div class="first_char {% if chars in sound %}sound_highlight{% endif %} {% if chars in middle_chars %}block1{% elif chars in bottom_chars %}block2{% else %}block3{% endif %}"><span>{{ chars }}</span></div>
+                    {% elif forloop.last %}
+                    <div class="last_char {% if chars in sound %}sound_highlight{% endif %} {% if chars in middle_chars %}block1{% elif chars in bottom_chars %}block2{% else %}block3{% endif %}"><span>{{ chars }}</span></div>
+                    {% elif chars in middle_chars %}
+                    <div class="{% if chars in sound %}sound_highlight{% endif %} block1"><span>{{ chars }}</span></div>
+                    {% elif chars in bottom_chars %}
+                    <div class="{% if chars in sound %}sound_highlight{% endif %} block2"><span>{{ chars }}</span></div>
+                    {% else %}
+                    <div class="{% if chars in sound %}sound_highlight{% endif %} block3"><span>{{ chars }}</span></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="image_playground col-md-4" style="display: flex;align-items: center;justify-content: left;">
+            <img style="border-radius: 20px;" class="img-fluid" width="250" src="{{word.1}}" alt="">
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+
+{% endblock index %}

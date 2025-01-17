@@ -1,0 +1,23 @@
+#number_of_words,
+#sound_to_use{
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid rgb(207, 207, 207);
+    border-radius: 5px;
+    padding: 5px;
+}
+.check_btn{
+    background-color: transparent;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 5px;
+    color: rgb(129, 129, 129);
+}
+.check_btn:hover{
+    background-color: rgb(207, 207, 207);
+    border: 1px solid #454545;
+    color: #454545;
+}
+form label{
+    color: #454545;
+    font-weight: 700;
+}

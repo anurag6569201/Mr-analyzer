@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # LLM apps
     'MCQgenerator',
     'asktoaske',
+    'sound_img_txt',
 ]
 
 MIDDLEWARE = [
