@@ -22,6 +22,7 @@ cycler==0.12.1
 dataclasses-json==0.6.7
 Deprecated==1.2.15
 diff-match-patch==20241021
+distro==1.9.0
 Django==5.1.4
 django-import-export==4.3.3
 durationpy==0.9
@@ -56,6 +57,7 @@ humanfriendly==10.0
 idna==3.10
 importlib_metadata==8.5.0
 importlib_resources==6.5.2
+jiter==0.8.2
 joblib==1.4.2
 jsonpatch==1.33
 jsonpointer==3.0.0
@@ -79,6 +81,7 @@ mypy-extensions==1.0.0
 numpy==2.2.1
 oauthlib==3.2.2
 onnxruntime==1.20.1
+openai==1.59.7
 opentelemetry-api==1.29.0
 opentelemetry-exporter-otlp-proto-common==1.29.0
 opentelemetry-exporter-otlp-proto-grpc==1.29.0

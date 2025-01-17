@@ -97,8 +97,50 @@
         </div>
     </div>
     {% endfor %}
+    {% else %}
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <p>
+                In this project, we categorize the English alphabet into three distinct groups based on their shapes:
+            </p>
+            <ul>
+                <li><strong>Middle Characters:</strong> a, c, e, i, m, n, o, r, s, u, v, w, x, z</li>
+                <li><strong>Bottom Characters:</strong> g, j, p, q, y</li>
+                <li><strong>Upper Characters:</strong> b, d, f, h, k, l, t</li>
+            </ul>
+            <p>
+                Using these classifications, we assign specific shapes to each letter and render them dynamically using Django.
+            </p>
+            <p>
+                When users input the desired number of words and associated sounds, a Large Language Model (LLM) generates relevant prompts and words. 
+                These prompts are then sent to <strong>DALL·E 3</strong> for image generation, which returns image URLs. The system retrieves these 
+                images and associates them with the respective words, seamlessly rendering them on the frontend for an interactive and visually engaging experience.
+            </p>
+        </div>
+    </div>
+    
     {% endif %}
 </div>
-
+<div class="container">
+    <div class="row">
+        <form method="post" action="{% url 'sound_img_txt:index1' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="number_of_sentences">Number of Sentences:</label>
+                <input type="number" id="number_of_sentences" name="number_of_sentences" value="{{ number_of_sentences }}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="topic_to_use">Topic to Use:</label>
+                <input type="text" id="topic_to_use" name="topic_to_use" value="{{ topic }}" class="form-control">
+            </div>
+            <button type="submit" class="btn check_btn mt-3">Generate</button>
+        </form>
+        {% if data1 %}
+        <div class="col-md-12">
+            {{main_data|safe}}
+        </div>
+        {% endif %}
+    </div>
+</div>
 
 {% endblock index %}

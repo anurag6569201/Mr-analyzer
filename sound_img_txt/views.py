@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from sound_img_txt.LLM_Model.model import produce_words
+from sound_img_txt.LLM_Model.model import produce_words,produce_worksheet
 from sound_img_txt.LLM_Model.prompt import prompt_template_name
+from sound_img_txt.LLM_Model.worksheet import prompt_template_worksheet
 from sound_img_txt.LLM_Model.dale import get_images
 
 def index(request):
@@ -45,5 +46,27 @@ def index(request):
     else:
         context = {
             'data': data,
+        }
+    return render(request, 'sound_img_txt/app/index.html', context)
+
+
+
+def index1(request):
+    data1 = 0
+    if request.method == "POST":
+        data1 = 1
+
+        number_of_sentences_to_produce = int(request.POST.get('number_of_sentences', 3))
+        topic_to_use = request.POST.get('topic_to_use', "science")
+        
+        llm_response = produce_worksheet(prompt_template_worksheet, topic_to_use, number_of_sentences_to_produce)
+        
+        context = {
+            'data1': data1,
+            'main_data': llm_response,
+        }
+    else:
+        context = {
+            'data1': data1,
         }
     return render(request, 'sound_img_txt/app/index.html', context)
